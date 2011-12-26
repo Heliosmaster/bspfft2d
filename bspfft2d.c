@@ -12,44 +12,13 @@
 
 int nloc(int p, int s, int n){
   /* Compute number of local components of processor s for vector
-    of length n distributed cyclically over p processors. */
+  of length n distributed cyclically over p processors. */
   return  (n+p-s-1)/p ;
 } /* end nloc */
-
-//**a matrix to be 2d-ffted
-  void bspfft2d(double **a, int n0, int n1, int M, int N, int s,
-int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
-  
-  //  double *pa;
-  int nlr, nlc, pid,i,j;
-  
-  nlr=  nloc(M,s,n); /* number of local rows */
-  nlc=  nloc(N,t,n); /* number of local columns */
-  pid = bsp_pid();
-  
-  // pa= (nlr>0 ? a[0] : NULL);
-  
-  
-  // bsp_push_reg(pa,nlr*nlc*SZDBL);
-  
-  //bsp_sync();
-  
-  /**
-    * 1D fft on the rows
-  */
-  
-  
-    
-    
-  }
-  /**
-    * 1D fft on the cols
-    */
-}
   
   
   /****************** Sequential functions ********************************/
-  void ufft(double *x, int n, int sign, double *w){
+void ufft(double *x, int n, int sign, double *w){
     
     /* This sequential function computes the unordered discrete Fourier
       transform of a complex vector x of length n, stored in a real array
@@ -264,14 +233,15 @@ int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
     
   } /* end k1_init */
   
-  void bspredistr(double *x, int n, int p, int s, int c0, int c1,
+  void bspredistr(double *x, int n, int p, int pid, int s, int t, int c0, int c1,
   char rev, int *rho_p){
     
     /* This function redistributes the complex vector x of length n,
       stored as pairs of reals, from group-cyclic distribution
       over p processors with cycle c0 to cycle c1, where
       c0, c1, p, n are powers of two with 1 <= c0 <= c1 <= p <= n.
-      s is the processor number, 0 <= s < p.
+      s is the processor row, t is the processor column and pid = P(s,t)
+      
       If rev=true, the function assumes the processor numbering
       is bit reversed on input.
       rho_p is the bit-reversal permutation of length p.
@@ -287,15 +257,15 @@ int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
     tmp= vecallocd(2*size);
     
     if (rev) {
-      j0= rho_p[s]%c0;
-      j2= rho_p[s]/c0;
+      j0= rho_p[pid]%c0;
+      j2= rho_p[pid]/c0;
     } else {
-      j0= s%c0;
-      j2= s/c0;
+      j0= pid%c0;
+      j2= pid/c0;
     }
     for(j=0; j<npackets; j++){
       jglob= j2*c0*np + j*c0 + j0;
-      destproc=  (jglob/(c1*np))*c1 + jglob%c1;
+      destproc= s+(jglob/(c1*np))*c1 + jglob%c1;
       destindex= (jglob%(c1*np))/c1;
       for(r=0; r<size; r++){
         tmp[2*r]=   x[2*(j+r*ratio)];
@@ -303,18 +273,20 @@ int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
       }
       bsp_put(destproc,tmp,x,destindex*2*SZDBL,size*2*SZDBL);
     }
-    bsp_sync(); // to be deleted to avoid unnecessary syncs
+    //bsp_sync(); // to be deleted to avoid unnecessary syncs
     vecfreed(tmp);
     
   } /* end bspredistr */
   
-  void bspfft1d(double *x, int n, int p, int s, int sign, double *w0, double *w,
-  double *tw, int *rho_np, int *rho_p){
+  void bspfft1d(double **a, int M, int n, int p, int pid, int s,
+                int t, int sign, double *w0, double *w,double *tw, int *rho_np, int *rho_p){
     
-    /* This parallel function computes the discrete Fourier transform
-      of a complex array x of length n=2^m, m >= 1, stored in a real array
+    /* This parallel function computes the discrete Fourier transform on the rows
+      of a complex matrix a:
+      
+      the M rows of a are vectors of length n=2^m, m >= 1, stored in a real array
       of length 2n as pairs (Re x[j], Im x[j]), 0 <= j < n.
-      x must have been registered before calling this function.
+      a must have been registered before calling this function.
       p is the number of processors, p=2^q, 0 <= q < m.
       s is the processor number, 0 <= s < p.
     The function uses three weight tables:
@@ -334,33 +306,36 @@ int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
       */
     
     char rev;
-    int np, k1, r, c0, c, ntw, j;
+    int np, k1, r, c0, c, ntw, j,i;
     double ninv;
     
     np= n/p;
     k1= k1_init(n,p);
-    permute(x,np,rho_np);
-    rev= TRUE;
-    for(r=0; r<np/k1; r++)
-    ufft(&x[2*r*k1],k1,sign,w0);
-    
+    for(i=0;i<M;i++){  // do this stuff for every row
+      permute(a[i],np,rho_np);
+      rev= TRUE;
+      for(r=0; r<np/k1; r++) ufft(&a[i][2*r*k1],k1,sign,w0);
+    }
     c0= 1;
     ntw= 0;
     for (c=k1; c<=p; c *=np){
-      bspredistr(x,n,p,s,c0,c,rev,rho_p);
+      for(i=0;i<M;i++) bspredistr(a[i],n,p,pid,s,t,c0,c,rev,rho_p);
+      bsp_sync();  //sync is done only after every row has been redistributed
       rev= FALSE;
-      twiddle(x,np,sign,&tw[2*ntw*np]);
-      ufft(x,np,sign,w);
+      for(i=0;i<M;i++){ //do this stuff for every row
+        twiddle(a[i],np,sign,&tw[2*ntw*np]);
+        ufft(a[i],np,sign,w);
+      }
       c0= c;
       ntw++;
     }
     
     if (sign==-1){
       ninv= 1 / (double)n;
-      for(j=0; j<2*np; j++)
-      x[j] *= ninv;
+      for(i=0;i<M;i++) { //do this for every row
+        for(j=0; j<2*np; j++)  a[i][j] *= ninv;
+      } 
     }
-    
   } /* end bspfft */
   
   void bspfft1d_init(int n, int p, int s, double *w0, double *w, double *tw,
@@ -388,7 +363,31 @@ int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
     
   } /* end bspfft_init */
   
+//**a matrix to be 2d-ffted
+void bspfft2d(double **a, int n0, int n1, int M, int N, int s,
+              int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
+  
+  //  double *pa;
+  int nlr, nlc, pid,i,j;
+  
+  nlr=  nloc(M,s,n0); /* number of local rows */
+  nlc=  nloc(N,t,n1); /* number of local columns */
+  pid = bsp_pid();
+  
+  // pa= (nlr>0 ? a[0] : NULL);
   
   
+  // bsp_push_reg(pa,nlr*nlc*SZDBL);
   
+  //bsp_sync();
   
+  /**
+    * 1D fft on the rows
+  */
+  
+  bspfft1d(a,nlr,nlc,N,pid,s,t,sign,w0,w,tw,rho_np,rho_p);
+    
+  /**
+    * 1D fft on the cols
+    */
+}

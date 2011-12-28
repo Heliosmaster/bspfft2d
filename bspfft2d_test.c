@@ -36,6 +36,10 @@ void bspfft2d_test(){
             bsp_put(q,&n1,&n1,0,SZINT);
         }
     }
+    bsp_pop_reg(&n1);
+    bsp_pop_reg(&n0); //not needed anymore 
+    bsp_pop_reg(&N);
+    bsp_pop_reg(&M);
     bsp_sync();
    
 
@@ -80,20 +84,16 @@ void bspfft2d_test(){
     bspfft2d(a,n0,n1,M,N,s,t,1,w0,w,tw,rho_np,rho_p);
     
     // show output matrix
-    printf("\n%d\n:",pid);
-    for(i=0;i<nlr;i++)
+    //    printf("\n%d:\n",pid);
+        for(i=0;i<nlr;i++)
       for(j=0; j<nlc; j++){
-        printf("a[%d][%d]=%f\n",i,2*j,a[i][2*j]);
-        printf("a[%d][%d]=%f\n",i,2*j+1,a[i][2*j+1]);
+        printf("%d: a[%d][%d]=%f\n",pid,i,2*j,a[i][2*j]);
+        printf("%d: a[%d][%d]=%f\n",pid,i,2*j+1,a[i][2*j+1]);
       }
-    
-    //    bsp_pop_reg(a);
-    bsp_pop_reg(&n0);
-    bsp_pop_reg(&n1);// not needed anymore 
-    bsp_pop_reg(&N);
-    bsp_pop_reg(&M);
+      
     bsp_sync();
-
+    
+    
     vecfreei(rho_p);
     vecfreei(rho_np);
     vecfreed(tw);

@@ -10,7 +10,7 @@
   * sign,....
   **/
 
-double **a; 
+//double **a; 
 int nloc(int p, int s, int n){
   /* Compute number of local components of processor s for vector
   of length n distributed cyclically over p processors. */
@@ -286,7 +286,7 @@ void ufft(double *x, int n, int sign, double *w){
       * the address of a[i] in the destproc, so we start from the
       * beginning of a and jump the i-1 rows before (of length nlc_dest)
       */
-      destindex= (jglob%(c1*nlc))/c1+(i-1)*nlc_dest;
+      destindex= (jglob%(c1*nlc))/c1+i*nlc_dest;
       for(r=0; r<size; r++){
         tmp[2*r]=x[2*(j+r*ratio)];
         tmp[2*r+1]= x[2*(j+r*ratio)+1];
@@ -411,5 +411,7 @@ void bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   /**
     * 1D fft on the cols
     */
-  bsp_pop_reg(&pa);
+  pa = a[0];
+  bsp_pop_reg(pa);
+  bsp_sync();  
 }

@@ -2,3 +2,8 @@
 *.o
 f2
 mk.sh
+fft
+inprod
+ip
+lu
+matvec

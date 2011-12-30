@@ -259,9 +259,7 @@ void ufft(double *x, int n, int sign, double *w){
     size= MAX(nlc/ratio,1);
     npackets= nlc/size;
     tmp= vecallocd(2*size);
-    nlr=nloc(M,s,n0);
-    
-    
+    nlr=nloc(M,s,n0);    
     
     if (rev) {
       j0= rho_p[t]%c0;
@@ -274,8 +272,7 @@ void ufft(double *x, int n, int sign, double *w){
       jglob= j2*c0*nlc + j*c0 + j0;
       // convert from 2D numbering to 1D numbering
       destproc = (jglob/(c1*nlc))*c1 + jglob%c1;
-  
-  //   printf("P(%d,%d), destproc = %d,%d\n",s,t,destproc,s+M*destproc);
+      //if(s==1 && t == 0) printf("P(%d,%d), destproc = %d,%d\n",s,t,destproc,s+M*destproc);
       destproc= s+M*destproc;
     
       // compute the number of local columns for the destproc
@@ -403,15 +400,10 @@ void bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   bsp_push_reg(pa,nlr*nlc*SZDBL);
   bsp_sync();
   
-  /**
-    * 1D fft on the rows
-  */
-  
   bspfft1d(a,n0,n1,M,N,pid,s,t,sign,w0,w,tw,rho_np,rho_p,pa);
-  /**
-    * 1D fft on the cols
-    */
-  pa = a[0];
+  //todo fft1d on the cols
+  
+  pa = a[0]; // this assignment is a workaround (otherwise it complains about bsp_pop_reg without a bsp_push_reg )
   bsp_pop_reg(pa);
   bsp_sync();  
 }

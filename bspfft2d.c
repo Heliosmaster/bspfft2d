@@ -66,7 +66,7 @@ void ufft(double *x, int n, int sign, double *w){
   
   void ufft_init(int n, double *w){
     
-    /* This function initializes the n  /2 weights to be used
+    /* This function initializes the n/2 weights to be used
       in a sequential radix-2 FFT of length n.
       n=2^m, m >= 0.
       w is a table of n/2 complex weights, stored as pairs of reals,
@@ -270,18 +270,19 @@ void ufft(double *x, int n, int sign, double *w){
     }    
     for(j=0; j<npackets; j++){
       jglob= j2*c0*nlc + j*c0 + j0;
-      // convert from 2D numbering to 1D numbering
+      
       destproc = (jglob/(c1*nlc))*c1 + jglob%c1;
       //if(s==1 && t == 0) printf("P(%d,%d), destproc = %d,%d\n",s,t,destproc,s+M*destproc);
+      // we now have P(s,destproc), we have to convert from 2D to 1D numbering
       destproc= s+M*destproc;
     
       // compute the number of local columns for the destproc
       nlc_dest = nloc(N,(jglob/(c1*nlc))*c1 + jglob%c1,n1);
       
       /*
-      * the first term of the sum is because we don't really know
+      * the second term of the sum is because we don't really know
       * the address of a[i] in the destproc, so we start from the
-      * beginning of a and jump the i-1 rows before (of length nlc_dest)
+      * beginning of a and jump
       */
       destindex= (jglob%(c1*nlc))/c1+i*nlc_dest;
       for(r=0; r<size; r++){

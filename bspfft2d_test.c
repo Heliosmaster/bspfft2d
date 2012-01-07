@@ -77,7 +77,16 @@ void bspfft2d_test(){
       }
     bsp_sync(); // useless?
     //  printf("\nProc %d - (%d,%d):%d,%d\n",pid,s,t,nlr,nlc);
-          
+    
+     if(s==1 && t==0){
+      for(i=0;i<nlr;i++)
+      for(j=0;j<nlc;j++){
+        printf("%d: a[%d][%d]=%f\n",pid,i,2*j,a[i][2*j]);
+        printf("%d: a[%d][%d]=%f\n",pid,i,2*j+1,a[i][2*j+1]);
+      }
+    }
+     
+    
     //initialize the tables
     bspfft1d_init(n1,N,s,t,w0,w,tw,rho_np,rho_p);
     bsp_sync(); // useless?
@@ -85,7 +94,8 @@ void bspfft2d_test(){
     
     // show output matrix
     //    printf("\n%d:\n",pid);
-    if(s==0 && t==1){
+    if(s==1 && t==0){
+      printf("After:\n");
       for(i=0;i<nlr;i++)
       for(j=0;j<nlc;j++){
         printf("%d: a[%d][%d]=%f\n",pid,i,2*j,a[i][2*j]);

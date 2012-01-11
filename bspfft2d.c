@@ -150,6 +150,8 @@ void ufft(double *x, int n, int sign, double *w){
     double theta;
     
     theta= -2.0 * M_PI * alpha / (double)n;
+  //  printf("%d: theta=%f\n",bsp_pid(),theta);
+    
     for(j=0; j<n; j++){
       w[2*j]=   cos(rho[j]*theta);
       w[2*j+1]= sin(rho[j]*theta);
@@ -337,6 +339,7 @@ void ufft(double *x, int n, int sign, double *w){
       rev= TRUE;
       for(r=0; r<nlc/k1; r++) ufft(&a[i][2*r*k1],k1,sign,w0);
     }
+  
     c0= 1;
     ntw= 0;
     for (c=k1; c<=N; c *=nlc){
@@ -345,10 +348,20 @@ void ufft(double *x, int n, int sign, double *w){
       }
       bsp_sync();  //sync is done only after every row has been redistributed
       rev= FALSE;
+      //code goes crazy here
       for(i=0;i<nlr;i++){ //do this stuff for every row
-        twiddle(a[i],nlc,sign,&tw[2*ntw*nlc]);
+        twiddle(a[i],nlc,sign,&tw[2*ntw*nlc]); 
         ufft(a[i],nlc,sign,w);
+       /*    if(t==0){
+           printf("B(%d,%d): ",s,t);
+      for(j=0;j<nlc;j++){
+        printf("a[%d][%d]=%f  a[%d][%d]=%f  ",i,2*j,a[i][2*j],i,2*j+1,a[i][2*j+1]);
       }
+      printf("\n");
+    }*/
+      }
+      
+      
       c0= c;
       ntw++;
     }
@@ -379,7 +392,7 @@ void ufft(double *x, int n, int sign, double *w){
     
     ntw= 0;
     for (c=k1; c<=N; c *=nlc){
-      alpha= (s%c) / (double)(c);
+      alpha= (t%c) / (double)(c);
       twiddle_init(nlc,alpha,rho_np,&tw[2*ntw*nlc]);
       ntw++;
     }

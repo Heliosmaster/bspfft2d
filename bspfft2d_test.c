@@ -46,6 +46,8 @@ void bspfft2d_test(){
     /* Compute 2D processor numbering from 1D numbering */
     s= pid%M;  /* 0 <= s < M */
     t= pid/M;  /* 0 <= t < N */
+    
+    printf("%d, s=%d,t=%d\n",pid,s,t);
 
     /* Allocate and initialize matrix */
     nlr=nloc(M,s,n0); /* number of local rows */
@@ -75,33 +77,38 @@ void bspfft2d_test(){
         a[i][2*j]= 2.0;
         a[i][2*j+1]= 1.0;
       }
-    bsp_sync(); // useless?
+    //bsp_sync(); // useless?
     //  printf("\nProc %d - (%d,%d):%d,%d\n",pid,s,t,nlr,nlc);
-    
-     if(s==1 && t==0){
-      for(i=0;i<nlr;i++)
+    /*
+    if(s==0 && t==0){
+      printf("Before:\n");
+      for(i=0;i<nlr;i++){
+        printf("(%d,%d): ",s,t);
       for(j=0;j<nlc;j++){
-        printf("%d: a[%d][%d]=%f\n",pid,i,2*j,a[i][2*j]);
-        printf("%d: a[%d][%d]=%f\n",pid,i,2*j+1,a[i][2*j+1]);
+        printf("a[%d][%d]=%f  a[%d][%d]=%f  ",i,2*j,a[i][2*j],i,2*j+1,a[i][2*j+1]);
       }
+      printf("\n");
     }
+  }*/
      
     
     //initialize the tables
     bspfft1d_init(n1,N,s,t,w0,w,tw,rho_np,rho_p);
-    bsp_sync(); // useless?
+   // bsp_sync(); // useless?
     bspfft2d(a,n0,n1,M,N,s,t,1,w0,w,tw,rho_np,rho_p);
     
     // show output matrix
     //    printf("\n%d:\n",pid);
-    if(s==1 && t==0){
+   if(s==1 && t==0){
       printf("After:\n");
-      for(i=0;i<nlr;i++)
+      for(i=0;i<nlr;i++){
+        printf("(%d,%d): ",s,t);
       for(j=0;j<nlc;j++){
-        printf("%d: a[%d][%d]=%f\n",pid,i,2*j,a[i][2*j]);
-        printf("%d: a[%d][%d]=%f\n",pid,i,2*j+1,a[i][2*j+1]);
+        printf("a[%d][%d]=%f  a[%d][%d]=%f  ",i,2*j,a[i][2*j],i,2*j+1,a[i][2*j+1]);
       }
+      printf("\n");
     }
+  }
     
     bsp_sync();
     

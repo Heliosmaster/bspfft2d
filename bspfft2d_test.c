@@ -28,7 +28,7 @@ void bspfft2d_test(){
         scanf("%d",&n1);
         if(n1<2*N) bsp_abort("Error in input: n1 < 2N");*/
         n0=8;
-        n1=8;
+        n1=4;
         for (q=0; q<p; q++){
             bsp_put(q,&M,&M,0,SZINT);
             bsp_put(q,&N,&N,0,SZINT);
@@ -47,7 +47,7 @@ void bspfft2d_test(){
     s= pid%M;  /* 0 <= s < M */
     t= pid/M;  /* 0 <= t < N */
     
-    printf("%d, s=%d,t=%d\n",pid,s,t);
+   // printf("%d, s=%d,t=%d\n",pid,s,t);
 
     /* Allocate and initialize matrix */
     nlr=nloc(M,s,n0); /* number of local rows */
@@ -60,6 +60,7 @@ void bspfft2d_test(){
         printf("using the %d by %d cyclic distribution\n",M,N);
     }
     
+   
     // old: np = n/p , now every local fft is of the length nlc
     
     k1= k1_init(n1,N,nlc);
@@ -90,17 +91,16 @@ void bspfft2d_test(){
       printf("\n");
     }
   }*/
-     
-    
     //initialize the tables
     bspfft1d_init(n1,N,s,t,w0,w,tw,rho_np,rho_p);
    // bsp_sync(); // useless?
     bspfft2d(a,n0,n1,M,N,s,t,1,w0,w,tw,rho_np,rho_p);
+   // bspfft2d(a,n0,n1,M,N,s,t,-1,w0,w,tw,rho_np,rho_p);
     
     // show output matrix
     //    printf("\n%d:\n",pid);
    if(s==1 && t==0){
-      printf("After:\n");
+      printf("Output:\n");
       for(i=0;i<nlr;i++){
         printf("(%d,%d): ",s,t);
       for(j=0;j<nlc;j++){

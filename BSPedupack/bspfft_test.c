@@ -45,7 +45,7 @@ void bspfft_test(){
         printf("Please enter length n: \n");
         scanf("%d",&n);
         if(n<2*p)
-            bsp_abort("Error in input: n < 2p");
+            bsp_abort("Error in input: n < 2p\n");
         for (q=0; q<p; q++)
             bsp_put(q,&n,&n,0,SZINT);
     }

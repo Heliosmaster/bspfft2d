@@ -291,7 +291,7 @@ void ufft(double *x, int n, int sign, double *w){
         tmp[2*r]=x[2*(j+r*ratio)];
         tmp[2*r+1]= x[2*(j+r*ratio)+1];
       }
-      //      printf("I am trying to put stuff in proc %d, at address %d\n",destproc,destindex*2*SZDBL);
+      //printf("I am trying to put stuff in proc %d, at address %d\n",destproc,destindex*2*SZDBL);
       bsp_put(destproc,tmp,pa,destindex*2*SZDBL,size*2*SZDBL);
     }
     //bsp_sync(); // deleted to avoid unnecessary syncs
@@ -332,6 +332,7 @@ void ufft(double *x, int n, int sign, double *w){
    
     nlr=  nloc(M,s,n0); /* number of local rows */
     nlc=  nloc(N,t,n1); /* number of local columns = length of 1d fft that every proc has */
+    printf("(%d,%d): %d,%d\n",s,t,nlr,nlc);
     k1= k1_init(n1,N,nlc);
    
     for(i=0;i<nlr;i++){// do this stuff for every row
@@ -348,20 +349,10 @@ void ufft(double *x, int n, int sign, double *w){
       }
       bsp_sync();  //sync is done only after every row has been redistributed
       rev= FALSE;
-      //code goes crazy here
       for(i=0;i<nlr;i++){ //do this stuff for every row
         twiddle(a[i],nlc,sign,&tw[2*ntw*nlc]); 
         ufft(a[i],nlc,sign,w);
-       /*    if(t==0){
-           printf("B(%d,%d): ",s,t);
-      for(j=0;j<nlc;j++){
-        printf("a[%d][%d]=%f  a[%d][%d]=%f  ",i,2*j,a[i][2*j],i,2*j+1,a[i][2*j+1]);
-      }
-      printf("\n");
-    }*/
-      }
-      
-      
+      }      
       c0= c;
       ntw++;
     }
@@ -413,8 +404,8 @@ void bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   pa= (nlr>0 ? a[0] : NULL);
   bsp_push_reg(pa,nlr*nlc*SZDBL);
   bsp_sync();
-  
   bspfft1d(a,n0,n1,M,N,pid,s,t,sign,w0,w,tw,rho_np,rho_p,pa);
+  
   //todo fft1d on the cols
   
   pa = a[0]; // this assignment is a workaround (otherwise it complains about bsp_pop_reg without a bsp_push_reg )

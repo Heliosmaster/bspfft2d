@@ -99,8 +99,7 @@ void bspfft2d_test(){
     
     // show output matrix
     //    printf("\n%d:\n",pid);
-   if(s==1 && t==0){
-      printf("Output:\n");
+    //  printf("Output:\n");
       for(i=0;i<nlr;i++){
         printf("(%d,%d): ",s,t);
       for(j=0;j<nlc;j++){
@@ -108,7 +107,6 @@ void bspfft2d_test(){
       }
       printf("\n");
     }
-  }
     
     bsp_sync();
     

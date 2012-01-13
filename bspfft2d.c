@@ -150,7 +150,6 @@ void ufft(double *x, int n, int sign, double *w){
     double theta;
     
     theta= -2.0 * M_PI * alpha / (double)n;
-  //  printf("%d: theta=%f\n",bsp_pid(),theta);
     
     for(j=0; j<n; j++){
       w[2*j]=   cos(rho[j]*theta);
@@ -235,9 +234,8 @@ void ufft(double *x, int n, int sign, double *w){
     
   } /* end k1_init */
   
-  void bspredistr(double *x, int i, int n0, int n1,
-  int M, int N, int pid, int s, int t,
-  int c0, int c1,char rev, int *rho_p, double *pa){
+  void bspredistr(double *x, int i, int nlr, int nlc, int M, int N, int s, int t,
+  int c0, int c1,char rev, int *rho_p, double *pm, int col){
     
     /* This function redistributes the complex vector x of length n,
        stored as pairs of reals, from group-cyclic distribution
@@ -249,19 +247,21 @@ void ufft(double *x, int n, int sign, double *w){
        is bit reversed on input.
       
        rho_p is the bit-reversal permutation of length p.
+      
+       col = 0 means that we are considering proc rows
+       col = 1 means that we are considering proc columns
     */
       
     
     double *tmp;
-    int j0, j2, j, jglob, ratio, size,nlr,nlc,nlc_dest;
+    int j0, j2, j, jglob, ratio, size;
     int npackets, destproc, destindex, r;
     
-    nlc= nloc(N,t,n1);
     ratio= c1/c0;
     size= MAX(nlc/ratio,1);
     npackets= nlc/size;
     tmp= vecallocd(2*size);
-    nlr=nloc(M,s,n0);    
+     
     
     if (rev) {
       j0= rho_p[t]%c0;
@@ -274,82 +274,79 @@ void ufft(double *x, int n, int sign, double *w){
       jglob= j2*c0*nlc + j*c0 + j0;
       
       destproc = (jglob/(c1*nlc))*c1 + jglob%c1;
-      //if(s==1 && t == 0) printf("P(%d,%d), destproc = %d,%d\n",s,t,destproc,s+M*destproc);
-      // we now have P(s,destproc), we have to convert from 2D to 1D numbering
-      destproc= s+M*destproc;
-    
+      
+      
+      if (col == 0){
+        destproc= s+M*destproc; // we now have P(s,destproc), we have to convert from 2D to 1D numbering
+      } else{  
+        destproc = M*t+destproc; // now we have P(destproc,t), and we have to convert from 2D to 1D
+      }
+      
+
+      destindex= (jglob%(c1*nlc))/c1+i*nlc;
+     
       // compute the number of local columns for the destproc
-      nlc_dest = nloc(N,(jglob/(c1*nlc))*c1 + jglob%c1,n1);
       
       /*
       * the second term of the sum is because we don't really know
       * the address of a[i] in the destproc, so we start from the
       * beginning of a and jump
       */
-      destindex= (jglob%(c1*nlc))/c1+i*nlc_dest;
+    
       for(r=0; r<size; r++){
         tmp[2*r]=x[2*(j+r*ratio)];
         tmp[2*r+1]= x[2*(j+r*ratio)+1];
       }
       //printf("I am trying to put stuff in proc %d, at address %d\n",destproc,destindex*2*SZDBL);
-      bsp_put(destproc,tmp,pa,destindex*2*SZDBL,size*2*SZDBL);
+      bsp_put(destproc,tmp,pm,destindex*2*SZDBL,size*2*SZDBL);
+      //if (col==1 && s==1 && t==0) printf("(%d,%d): here\n",s,t);    
     }
     //bsp_sync(); // deleted to avoid unnecessary syncs
     vecfreed(tmp);
     
-  } /* end bspredistr nlr=  nloc(M,s,n0); np=  nloc(N,t,n1); */
+  } /* end bspredistr */
   
-  void bspfft1d(double **a, int n0, int n1, int M, int N, int pid, int s,
+  void bspfft1d(double **a, int n1, int nlr,int nlc, int M, int N, int s,
                 int t, int sign, double *w0, double *w,
-                double *tw, int *rho_np, int *rho_p, double *pa){
+                double *tw, int *rho_np, int *rho_p, double *pa, int col){
     
-    /* This parallel function computes the discrete Fourier transform on the rows
-      of a complex matrix a:
-      
-      the n0 rows of a are vectors of length n1=2^m, m >= 1, stored in a real array
-      of length 2n1 as pairs (Re x[j], Im x[j]), 0 <= j < n.
-      a must have been registered before calling this function.
-      p is the number of processors, p=2^q, 0 <= q < m.
-      s is the processor number, 0 <= s < p.
-    The function uses three weight tables:
-     w0 for the unordered fft of length k1,
-      w  for the unordered fft of length n/p,
-      tw for a number of twiddles, each of length n/p.
-    The function uses two bit-reversal permutations:
-    rho_np of length n/p,
-      rho_p of length p.
-      The weight tables and bit-reversal permutations must have been
-      initialized before calling this function.
-      If sign = 1, then the dft is computed,
-      y[k] = sum j=0 to n-1 exp(-2*pi*i*k*j/n)*x[j], for 0 <= k < n.
-      If sign =-1, then the inverse dft is computed,
-      y[k] = (1/n) sum j=0 to n-1 exp(+2*pi*i*k*j/n)*x[j], for 0 <= k < n.
-      Here, i=sqrt(-1). The output vector y overwrites x. (in-place fft)
-    */
+    /**
+      * a = local matrix
+      * n0,n1 = # of total rows & columns (global)
+      * nlr = # of local rows (how many fft on the rows we are doing)
+      * nlc = # of local cols (the length of the 1D fft we are doing)
+      * M,N = # of proc rows,cols
+      * s,t = whoami (2D numbering)
+      * sign = 1/-1 (fft/ifft)
+      * w0,w,tw,rho_np,rho_p = tables necessary for 1D ffts
+      * pa = pointer to the beginning of a (necessary to know where to put stuff)
+      * col = 1 if in reality we are doing fft on the columns (locally it seems like rows, but something is different)
+      *       0 otherwise (really rows)
+      */
     char rev;
-    int nlc, nlr, k1, r, c0, c, ntw, j,i;
+    int k1, r, c0, c, ntw, j,i;
     double ninv;
+
    
-    nlr=  nloc(M,s,n0); /* number of local rows */
-    nlc=  nloc(N,t,n1); /* number of local columns = length of 1d fft that every proc has */
-    printf("(%d,%d): %d,%d\n",s,t,nlr,nlc);
     k1= k1_init(n1,N,nlc);
    
-    for(i=0;i<nlr;i++){// do this stuff for every row
+  // 1 step: for every row, permute and compute a local, unordered fft  
+    for(i=0;i<nlr;i++){
       permute(a[i],nlc,rho_np);
       rev= TRUE;
       for(r=0; r<nlc/k1; r++) ufft(&a[i][2*r*k1],k1,sign,w0);
     }
-  
     c0= 1;
     ntw= 0;
     for (c=k1; c<=N; c *=nlc){
+      //2 step: for every row redistribute it (according to col)
       for(i=0;i<nlr;i++){
-        bspredistr(a[i],i,n0,n1,M,N,pid,s,t,c0,c,rev,rho_p,pa);        
+        bspredistr(a[i],i,nlr,nlc,M,N,s,t,c0,c,rev,rho_p,pa,col);        
       }
       bsp_sync();  //sync is done only after every row has been redistributed
       rev= FALSE;
-      for(i=0;i<nlr;i++){ //do this stuff for every row
+      //3 step: twiddle and perform an unordered fft on every row
+      for(i=0;i<nlr;i++){ 
         twiddle(a[i],nlc,sign,&tw[2*ntw*nlc]); 
         ufft(a[i],nlc,sign,w);
       }      
@@ -357,13 +354,17 @@ void ufft(double *x, int n, int sign, double *w){
       ntw++;
     }
     
+    //if sign=-1 we are interested in computing the inverse fft
+    
     if (sign==-1){
       ninv= 1 / (double)n1;
-      for(i=0;i<nlr;i++) { //do this for every row
+      for(i=0;i<nlr;i++) { 
         for(j=0; j<2*nlc; j++)  a[i][j] *= ninv;
       } 
     }
   } /* end bspfft */
+  
+  
   
   void bspfft1d_init(int n1, int N, int s, int t, double *w0, double *w, double *tw,
   int *rho_np, int *rho_p){
@@ -389,26 +390,67 @@ void ufft(double *x, int n, int sign, double *w){
     }
     
   } /* end bspfft_init */
+
+/**
+  * Transposes a mxn complex matrix represented by a m x 2n matrix w/ imaginary components next to real components
+  * Produces a n x 2m matrix in the same way (the imaginary part is still on the right)
+  * Warning: memory needs to be freed afterwards
+  */
+double **transpose(double **a,int m,int n){
+  double **tmp;
+  int i,j;
+  tmp = matallocd(n,2*m);
+  for(i=0;i<m;i++) for(j=0;j<n;j++) {
+    tmp[j][2*i] = a[i][2*j];
+    tmp[j][2*i+1] = a[i][2*j+1];
+  }
+  return tmp;
+}
   
-//**a matrix to be 2d-ffted
 void bspfft2d(double **a, int n0, int n1, int M, int N, int s,
               int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
+                
+  /**
+  a = input matrix (local)
+  n0 = total # of matrix rows
+  n1 = total # of matrix columns
+  M = # proc rows
+  N = # proc columns
+  P(s,t) = whoami
+  sign = 1/-1 for fft or ifft
+  w0,w,tw,rho_np,rho_p tables needed for 1D fft
+  */
   
-    double *pa;
-  int nlr, nlc, pid,i,j;
+  double *pm;
+  int nlr, nlc,i,j;
   
-  nlr=  nloc(M,s,n0); /* number of local rows */
-  nlc=  nloc(N,t,n1); /* number of local columns */
-  pid = bsp_pid();
+  nlr=  nloc(M,s,n0); // number of local rows 
+  nlc=  nloc(N,t,n1); // number of local columns 
   
-  pa= (nlr>0 ? a[0] : NULL);
-  bsp_push_reg(pa,nlr*nlc*SZDBL);
+  pm= (nlr>0 ? a[0] : NULL);
+  bsp_push_reg(pm,nlr*nlc*SZDBL);
   bsp_sync();
-  bspfft1d(a,n0,n1,M,N,pid,s,t,sign,w0,w,tw,rho_np,rho_p,pa);
   
-  //todo fft1d on the cols
+  //FFT on the rows
+  bspfft1d(a,n1,nlr,nlc,N,M,s,t,sign,w0,w,tw,rho_np,rho_p,pm,0);
   
-  pa = a[0]; // this assignment is a workaround (otherwise it complains about bsp_pop_reg without a bsp_push_reg )
-  bsp_pop_reg(pa);
+  bsp_pop_reg(pm);
+  
+  //transposition of the local matrix a
+  double **trasp;
+  trasp = transpose(a,nlr,nlc);
+  // point to the beginning of the transposed matrix
+  pm = trasp[0];
+  bsp_push_reg(pm,nlr*nlc*SZDBL);
+  bsp_sync();
+  
+  //FFT on the columns
+  bspfft1d(trasp,n0,nlc,nlr,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,1);
+  
+  //transpose it back
+  a = transpose(trasp,nlc,nlr);
+  
+  bsp_pop_reg(pm);
+  matfreed(trasp);
   bsp_sync();  
 }

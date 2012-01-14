@@ -9,3 +9,5 @@ lu
 matvec
 fft2d
 bench
+transpose
+tmk.sh

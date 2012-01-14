@@ -27,7 +27,7 @@ void bspfft2d_test(){
         printf("Please enter matrix column size n1:\n");
         scanf("%d",&n1);
         if(n1<2*N) bsp_abort("Error in input: n1 < 2N");*/
-        n0=8;
+        n0=4;
         n1=4;
         for (q=0; q<p; q++){
             bsp_put(q,&M,&M,0,SZINT);
@@ -73,44 +73,28 @@ void bspfft2d_test(){
     /*
     Matrix creation
     */
+    double k=1.0; 
+    
     for(i=0;i<nlr;i++)
       for(j=0; j<nlc; j++){
         a[i][2*j]= 2.0;
         a[i][2*j+1]= 1.0;
       }
-    //bsp_sync(); // useless?
-    //  printf("\nProc %d - (%d,%d):%d,%d\n",pid,s,t,nlr,nlc);
-    /*
-    if(s==0 && t==0){
-      printf("Before:\n");
-      for(i=0;i<nlr;i++){
-        printf("(%d,%d): ",s,t);
-      for(j=0;j<nlc;j++){
-        printf("a[%d][%d]=%f  a[%d][%d]=%f  ",i,2*j,a[i][2*j],i,2*j+1,a[i][2*j+1]);
-      }
-      printf("\n");
-    }
-  }*/
-    //initialize the tables
+ 
+  //initialize the tables
     bspfft1d_init(n1,N,s,t,w0,w,tw,rho_np,rho_p);
-   // bsp_sync(); // useless?
-    bspfft2d(a,n0,n1,M,N,s,t,1,w0,w,tw,rho_np,rho_p);
+    
+    
+    a = bspfft2d(a,n0,n1,M,N,s,t,1,w0,w,tw,rho_np,rho_p);
    // bspfft2d(a,n0,n1,M,N,s,t,-1,w0,w,tw,rho_np,rho_p);
     
-    // show output matrix
-    //    printf("\n%d:\n",pid);
-    //  printf("Output:\n");
-      for(i=0;i<nlr;i++){
-        printf("(%d,%d): ",s,t);
-      for(j=0;j<nlc;j++){
-        printf("a[%d][%d]=%f  a[%d][%d]=%f  ",i,2*j,a[i][2*j],i,2*j+1,a[i][2*j+1]);
-      }
-      printf("\n");
-    }
+
+  if(s==0 && t==0 )printf("----------\n");
+  sleep(1);
+
+    //bsp_sync();
     
-    bsp_sync();
-    
-    
+  
     vecfreei(rho_p);
     vecfreei(rho_np);
     vecfreed(tw);

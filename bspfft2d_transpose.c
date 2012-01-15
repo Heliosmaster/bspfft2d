@@ -56,7 +56,7 @@ void bspfft_rows(double **a,int nlr,int nlc, int sign){
 }
 
 
-void transpose(double **a,int nlr,int nlc, double *pa){
+void transpose(double **a,int nlr,int nlc, int nlc_dest, double *pm){
   int p = bsp_nprocs();
   int s = bsp_pid();
   double *tmp;
@@ -77,27 +77,62 @@ void transpose(double **a,int nlr,int nlc, double *pa){
     iglob = s+i*p;
     
     // computes the actual index on the remote destination
-    destindex = destrow*nlc+iglob;
+    destindex = destrow*nlc_dest+iglob;
     
     // stores in tmp the stuff to be sent
     tmp[0] = a[i][2*j];
     tmp[1] = a[i][2*j+1];
     
+    //printf("%d: (%d,%d) i put a%d%d=%d into %d, row %d, index %d, total index %d\n",s,nlr,nlc,i,2*j,(int)a[i][2*j],destproc,destrow,iglob,destindex);
     // performs the actual comunication
-    bsp_put(destproc,tmp,pa,destindex*2*SZDBL,2*SZDBL);
+    bsp_put(destproc,tmp,pm,destindex*2*SZDBL,2*SZDBL);
   }
   bsp_sync();
 }
 
 
-void bspfft2d_transpose(double **a,int nlr,int nlc, int sign, double *pa){
+void bspfft2d_transpose(double **a,int nlr,int nlc, int sign){
   //performs fft on the rows
-  bspfft_rows(a,nlr,nlc,sign);
+ // bspfft_rows(a,nlr,nlc,sign);
   
-  //transpose and performs again fft on the rows
-  transpose(a,nlr,nlc,pa);
-  bspfft_rows(a,nlr,nlc,sign);
+  //initialisation of the transpose
+  double **t;
+  int p = bsp_nprocs();
   
+  /**
+  * the transpose has a different size (generally): every proc has n0 columns (nlr*p=n0/p*p), and n1(=nlc)/p rows
+  */
+  int nlc_t = nlr*p;
+  int nlr_t = nlc/p;
+
+  //memory allocation
+  t = matallocd(nlr_t,2*nlc_t);
+  
+  //set the pointer to the beginning of the transpose for communication purposes
+  double *pt = t[0];
+  double *pa = a[0];
+  
+  //i let everybody know about my new stuff
+  bsp_push_reg(pt,2*nlr_t*nlc_t*SZDBL);
+  bsp_push_reg(pa,2*nlr*nlc*SZDBL);
+  bsp_push_reg(t,2*nlr_t*nlc_t*SZDBL);
+  bsp_sync();
+  
+  //transpose a
+  transpose(a,nlr,nlc,nlc_t,pt);
+  
+  // performs fft on the rows of the transpose of a
+  bspfft_rows(t,nlr_t,nlc_t,sign);
+  
+
   //transpose it back
-  transpose(a,nlr,nlc,pa);
+  transpose(t,nlr_t,nlc_t,nlc,pa);
+  
+
+  
+  matfreed(t);
+  bsp_pop_reg(t);
+  bsp_pop_reg(pa);
+  bsp_pop_reg(pt);
+
 }

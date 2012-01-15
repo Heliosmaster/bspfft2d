@@ -57,19 +57,14 @@ void bspfft2d_transpose_test(n0,n1){
   time0 = bsp_time();
   
   for(it=0;it<NITERS;it++){
-   printm(a,nlr,nlc,s);
-    sleep(1);
-    printf("-----\n");
-    sleep(1);
     bspfft2d_transpose(a,nlr,nlc,1);    // forward 2D fft
-   // printm(a,nlr,nlc,s);
-//  bspfft2d_transpose(a,nlr,nlc,-1);   //backward 2d fft
+    bspfft2d_transpose(a,nlr,nlc,-1);   //backward 2d fft
   }
 
   bsp_sync();
   time1 = bsp_time();
  
-//printm(a,nlr,nlc,s);  
+  printm(a,nlr,nlc,s);  
 
   printf("%d: It took exactly %f seconds for each FFT\n",s,(time1-time0)/NITERS);
 
@@ -79,7 +74,7 @@ void bspfft2d_transpose_test(n0,n1){
   matfreed(a);
   bsp_pop_reg(a);
   bsp_pop_reg(&n0);
-bsp_pop_reg(&n1);
+  bsp_pop_reg(&n1);
 
   bsp_end();
 }

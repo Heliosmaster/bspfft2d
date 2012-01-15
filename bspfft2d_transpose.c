@@ -93,7 +93,7 @@ void transpose(double **a,int nlr,int nlc, int nlc_dest, double *pm){
 
 void bspfft2d_transpose(double **a,int nlr,int nlc, int sign){
   //performs fft on the rows
- // bspfft_rows(a,nlr,nlc,sign);
+  bspfft_rows(a,nlr,nlc,sign);
   
   //initialisation of the transpose
   double **t;
@@ -129,7 +129,7 @@ void bspfft2d_transpose(double **a,int nlr,int nlc, int sign){
   transpose(t,nlr_t,nlc_t,nlc,pa);
   
 
-  
+  // free memory
   matfreed(t);
   bsp_pop_reg(t);
   bsp_pop_reg(pa);

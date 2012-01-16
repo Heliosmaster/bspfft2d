@@ -7,7 +7,7 @@ inprod
 ip
 lu
 matvec
-fft2d
+./fft2d
 bench
-transpose
+/transpose
 tmk.sh

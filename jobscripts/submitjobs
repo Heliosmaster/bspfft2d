@@ -1,5 +1,5 @@
 #!/bin/bash
-for p in 2 4 8 #16 32 64 128 256
+for p in 2 4 8 16 32 64 128 256
 	do
 		llsubmit js$p
 		sleep 3

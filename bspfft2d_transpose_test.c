@@ -4,14 +4,12 @@
 #include "bspfft2d_transpose.c"
 
 #define NITERS 1
-#define MEGA 1000000.0
 
 int P,n0,n1;
 
 void bspfft2d_transpose_test(n0,n1){
   int i,j,p,s,nlr,nlc,it;
-  double **a, *Error;
-  double time0,time1;
+  double **a,time0,time1;
   
   bsp_begin(P);
   p= bsp_nprocs();
@@ -64,7 +62,7 @@ void bspfft2d_transpose_test(n0,n1){
   bsp_sync();
   time1 = bsp_time();
  
-  printm(a,nlr,nlc,s);  
+  //printm(a,nlr,nlc,s);  
 
   printf("%d: It took exactly %f seconds for each FFT\n",s,(time1-time0)/NITERS);
 
@@ -87,6 +85,7 @@ int main(int argc, char **argv){
       if(P>bsp_nprocs()) bsp_abort("**Sorry, not enough processors available.**\n");
       n0 = atoi(argv[2]);
       n1 = atoi(argv[3]);
+      if(n0%2 != 0 || n1%2 != 0 || P%2 != 0) bsp_abort("**Please make provide powers of 2 as parameters**");
     }
 
   bspfft2d_transpose_test(n0,n1);

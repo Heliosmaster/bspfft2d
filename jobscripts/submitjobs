@@ -1,7 +1,10 @@
 #!/bin/bash
-
-for p in 1 2 4 8 16 32 64 128 256
+for q in 512 1024
 	do
-		llsubmit js$p
-		sleep 3
+	FFT2DSIZE = $q
+	for p in 1 2 4 #8 16 32 64 128 256
+		do
+			llsubmit js$p
+			sleep 3
+		done
 	done

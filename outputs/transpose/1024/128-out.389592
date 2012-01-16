@@ -1,0 +1,419 @@
+$MP_PROCS is set to 4.
+make: `transpose' is up to date.
+2D FFT of a matrix 1024-by-1024 using 128 processors
+0: It took exactly 0.084156 seconds for each FFT
+123: It took exactly 0.084280 seconds for each FFT
+125: It took exactly 0.084160 seconds for each FFT
+126: It took exactly 0.084130 seconds for each FFT
+127: It took exactly 0.084131 seconds for each FFT
+2: It took exactly 0.084276 seconds for each FFT
+4: It took exactly 0.084387 seconds for each FFT
+6: It took exactly 0.084521 seconds for each FFT
+8: It took exactly 0.084610 seconds for each FFT
+10: It took exactly 0.084673 seconds for each FFT
+107: It took exactly 0.085320 seconds for each FFT
+12: It took exactly 0.084774 seconds for each FFT
+40: It took exactly 0.085117 seconds for each FFT
+85: It took exactly 0.085110 seconds for each FFT
+109: It took exactly 0.085086 seconds for each FFT
+111: It took exactly 0.084961 seconds for each FFT
+113: It took exactly 0.084783 seconds for each FFT
+115: It took exactly 0.084679 seconds for each FFT
+117: It took exactly 0.084618 seconds for each FFT
+1: It took exactly 0.084472 seconds for each FFT
+119: It took exactly 0.084525 seconds for each FFT
+14: It took exactly 0.084955 seconds for each FFT
+81: It took exactly 0.085047 seconds for each FFT
+121: It took exactly 0.084395 seconds for each FFT
+16: It took exactly 0.085079 seconds for each FFT
+32: It took exactly 0.085521 seconds for each FFT
+83: It took exactly 0.085051 seconds for each FFT
+97: It took exactly 0.085587 seconds for each FFT
+18: It took exactly 0.085312 seconds for each FFT
+34: It took exactly 0.085473 seconds for each FFT
+87: It took exactly 0.085230 seconds for each FFT
+99: It took exactly 0.085602 seconds for each FFT
+20: It took exactly 0.085565 seconds for each FFT
+36: It took exactly 0.085419 seconds for each FFT
+101: It took exactly 0.085624 seconds for each FFT
+22: It took exactly 0.085620 seconds for each FFT
+103: It took exactly 0.085621 seconds for each FFT
+24: It took exactly 0.085617 seconds for each FFT
+89: It took exactly 0.085409 seconds for each FFT
+105: It took exactly 0.085572 seconds for each FFT
+26: It took exactly 0.085605 seconds for each FFT
+38: It took exactly 0.085236 seconds for each FFT
+91: It took exactly 0.085468 seconds for each FFT
+28: It took exactly 0.085586 seconds for each FFT
+42: It took exactly 0.085049 seconds for each FFT
+93: It took exactly 0.085515 seconds for each FFT
+124: It took exactly 0.084473 seconds for each FFT
+30: It took exactly 0.085579 seconds for each FFT
+44: It took exactly 0.085046 seconds for each FFT
+95: It took exactly 0.085576 seconds for each FFT
+120: It took exactly 0.084923 seconds for each FFT
+3: It took exactly 0.084741 seconds for each FFT
+46: It took exactly 0.085204 seconds for each FFT
+75: It took exactly 0.085271 seconds for each FFT
+122: It took exactly 0.084742 seconds for each FFT
+5: It took exactly 0.084926 seconds for each FFT
+48: It took exactly 0.085228 seconds for each FFT
+77: It took exactly 0.085227 seconds for each FFT
+112: It took exactly 0.085044 seconds for each FFT
+7: It took exactly 0.084948 seconds for each FFT
+50: It took exactly 0.085279 seconds for each FFT
+79: It took exactly 0.085203 seconds for each FFT
+114: It took exactly 0.085018 seconds for each FFT
+9: It took exactly 0.084993 seconds for each FFT
+52: It took exactly 0.085269 seconds for each FFT
+65: It took exactly 0.085410 seconds for each FFT
+116: It took exactly 0.084990 seconds for each FFT
+11: It took exactly 0.085015 seconds for each FFT
+54: It took exactly 0.085254 seconds for each FFT
+67: It took exactly 0.085301 seconds for each FFT
+118: It took exactly 0.084944 seconds for each FFT
+13: It took exactly 0.085046 seconds for each FFT
+56: It took exactly 0.085259 seconds for each FFT
+96: It took exactly 0.085136 seconds for each FFT
+15: It took exactly 0.085118 seconds for each FFT
+58: It took exactly 0.085301 seconds for each FFT
+98: It took exactly 0.085134 seconds for each FFT
+17: It took exactly 0.085139 seconds for each FFT
+69: It took exactly 0.085263 seconds for each FFT
+19: It took exactly 0.085132 seconds for each FFT
+71: It took exactly 0.085255 seconds for each FFT
+21: It took exactly 0.085135 seconds for each FFT
+73: It took exactly 0.085268 seconds for each FFT
+23: It took exactly 0.085144 seconds for each FFT
+64: It took exactly 0.085347 seconds for each FFT
+25: It took exactly 0.085154 seconds for each FFT
+60: It took exactly 0.085335 seconds for each FFT
+66: It took exactly 0.085324 seconds for each FFT
+100: It took exactly 0.085149 seconds for each FFT
+27: It took exactly 0.085137 seconds for each FFT
+62: It took exactly 0.085409 seconds for each FFT
+68: It took exactly 0.085317 seconds for each FFT
+102: It took exactly 0.085144 seconds for each FFT
+29: It took exactly 0.085126 seconds for each FFT
+63: It took exactly 0.085401 seconds for each FFT
+70: It took exactly 0.085287 seconds for each FFT
+104: It took exactly 0.085133 seconds for each FFT
+31: It took exactly 0.085107 seconds for each FFT
+59: It took exactly 0.085325 seconds for each FFT
+72: It took exactly 0.085265 seconds for each FFT
+106: It took exactly 0.085134 seconds for each FFT
+61: It took exactly 0.085348 seconds for each FFT
+74: It took exactly 0.085241 seconds for each FFT
+108: It took exactly 0.085140 seconds for each FFT
+33: It took exactly 0.085109 seconds for each FFT
+76: It took exactly 0.085233 seconds for each FFT
+110: It took exactly 0.085112 seconds for each FFT
+35: It took exactly 0.085137 seconds for each FFT
+78: It took exactly 0.085220 seconds for each FFT
+37: It took exactly 0.085136 seconds for each FFT
+80: It took exactly 0.085209 seconds for each FFT
+39: It took exactly 0.085177 seconds for each FFT
+82: It took exactly 0.085202 seconds for each FFT
+41: It took exactly 0.085188 seconds for each FFT
+84: It took exactly 0.085197 seconds for each FFT
+43: It took exactly 0.085200 seconds for each FFT
+86: It took exactly 0.085187 seconds for each FFT
+45: It took exactly 0.085207 seconds for each FFT
+88: It took exactly 0.085137 seconds for each FFT
+47: It took exactly 0.085216 seconds for each FFT
+90: It took exactly 0.085136 seconds for each FFT
+49: It took exactly 0.085229 seconds for each FFT
+92: It took exactly 0.085105 seconds for each FFT
+51: It took exactly 0.085240 seconds for each FFT
+94: It took exactly 0.085107 seconds for each FFT
+53: It took exactly 0.085267 seconds for each FFT
+55: It took exactly 0.085288 seconds for each FFT
+57: It took exactly 0.085316 seconds for each FFT
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.389592.0" invoked on p6092 ###
+        Job Step Id: p6012.huygens.sara.nl.389592.0
+           Job Name: p6012.huygens.sara.nl.389592
+          Step Name: 0
+  Structure Version: 10
+              Owner: bissstud
+         Queue Date: Mon Jan 16 12:26:54 2012
+             Status: Running
+          Recurring: False
+      Dispatch Time: Mon Jan 16 12:27:09 2012
+    Completion Date: Mon Jan 16 12:27:31 CET 2012 (i.e. time of job epilog invocation)
+        Favored Job: No
+      Notifications: Never
+ Virtual Image Size: 1 kb
+         Large Page: N
+         Coschedule: no
+       SMT required: as_is
+    MetaCluster Job: no
+     Checkpointable: no
+   Ckpt Elapse Time: 0 seconds
+    Ckpt Accum Time: 0 seconds
+  Restart From Ckpt: no
+ Restart Same Nodes: no
+            Restart: no
+        Preemptable: yes
+ Preempt Wait Count: 0
+     User Hold Time: 00:00:00 (0 seconds)
+               RSet: RSET_MCM_AFFINITY
+Mcm Affinity Option: MCM_DISTRIBUTE MCM_MEM_PREF MCM_SNI_NONE
+      Task Affinity: core(1)
+      Cpus Per Core:  0
+   Parallel Threads:  0
+                Env: OMP_NUM_THREADS=1
+                 In: /dev/null
+                Out: ../outputs/transpose/1024/128-out.389592
+                Err: ../outputs/transpose/1024/128-err.389592
+Initial Working Dir: /gpfs/h05/bissstud/Students11/d.taviani/BSP-2D-DFT/jobscripts
+          Resources: ConsumableMemory(2.000 gb)
+          Step Type: General Parallel
+         Node Usage: not_shared
+    Submitting Host: p6012.huygens.sara.nl
+        Schedd Host: p6012.huygens.sara.nl
+      Job Queue Key: 389592
+        Notify User: bissstud@p6012.huygens.sara.nl
+              Shell: /bin/bash
+  LoadLeveler Group: No_Group
+              Class: short
+    Ckpt Hard Limit: undefined
+    Ckpt Soft Limit: undefined
+     Cpu Hard Limit: unlimited
+     Cpu Soft Limit: unlimited
+    Data Hard Limit: undefined
+    Data Soft Limit: undefined
+      As Hard Limit: undefined
+      As Soft Limit: undefined
+   Nproc Hard Limit: undefined
+   Nproc Soft Limit: undefined
+ Memlock Hard Limit: undefined
+ Memlock Soft Limit: undefined
+   Locks Hard Limit: undefined
+   Locks Soft Limit: undefined
+  Nofile Hard Limit: undefined
+  Nofile Soft Limit: undefined
+    Core Hard Limit: unlimited
+    Core Soft Limit: 0 bytes
+    File Hard Limit: undefined
+    File Soft Limit: undefined
+   Stack Hard Limit: unlimited
+   Stack Soft Limit: unlimited
+     Rss Hard Limit: undefined
+     Rss Soft Limit: undefined
+Step Cpu Hard Limit: unlimited
+Step Cpu Soft Limit: unlimited
+Wall Clk Hard Limit: 01:00:00 (3600 seconds)
+Wall Clk Soft Limit: 01:00:00 (3600 seconds)
+         Unix Group: bissstud
+ User Space Windows: 0
+      Bulk Transfer: No
+Adapter Requirement: (sn_all,MPI,US,not_shared,AVERAGE,instances=1,)
+          Step Cpus: 0
+Step Virtual Memory: 0.000 mb
+   Step Real Memory: 256.000 gb
+Step Large Page Mem: 0.000 mb
+       Running Host: p6092.huygens.sara.nl
+      Machine Speed: 1.000000
+  Starter User Time: 00:00:00.000000
+Starter System Time: 00:00:00.000000
+ Starter Total Time: 00:00:00.000000
+     Starter maxrss: 0
+      Starter ixrss: 0
+      Starter idrss: 0
+      Starter isrss: 0
+     Starter minflt: 0
+     Starter majflt: 0
+      Starter nswap: 0
+    Starter inblock: 0
+    Starter oublock: 0
+     Starter msgsnd: 0
+     Starter msgrcv: 0
+   Starter nsignals: 0
+      Starter nvcsw: 0
+     Starter nivcsw: 0
+     Step User Time: 00:00:00.000000
+   Step System Time: 00:00:00.000000
+    Step Total Time: 00:00:00.000000
+        Step maxrss: 0
+         Step ixrss: 0
+         Step idrss: 0
+         Step isrss: 0
+        Step minflt: 0
+        Step majflt: 0
+         Step nswap: 0
+       Step inblock: 0
+       Step oublock: 0
+        Step msgsnd: 0
+        Step msgrcv: 0
+      Step nsignals: 0
+         Step nvcsw: 0
+        Step nivcsw: 0
+     Cluster Option: none
+     Network Usages: 0(1,MPI,US,1,0),
+Stripe Min Networks: False
+--------------------------------------------------------------------------------
+Node
+----
+
+   Name            : 
+   Requirements    : (Memory >= 4096 )
+   Preferences     : 
+   Node minimum    : 4
+   Node maximum    : 4
+   Node actual     : 4
+   Allocated Hosts : p6092.huygens.sara.nl:RUNNING:,MCM0:CPU< 0-1 >,MCM1:CPU< 16-17 >,MCM2:CPU< 32-33 >,MCM3:CPU< 48-49 >,MCM0:CPU< 2-3 >,MCM1:CPU< 18-19 >,MCM2:CPU< 34-35 >,MCM3:CPU< 50-51 >,MCM0:CPU< 4-5 >,MCM1:CPU< 20-21 >,MCM2:CPU< 36-37 >,MCM3:CPU< 52-53 >,MCM0:CPU< 6-7 >,MCM1:CPU< 22-23 >,MCM2:CPU< 38-39 >,MCM3:CPU< 54-55 >,MCM0:CPU< 8-9 >,MCM1:CPU< 24-25 >,MCM2:CPU< 40-41 >,MCM3:CPU< 56-57 >,MCM0:CPU< 10-11 >,MCM1:CPU< 26-27 >,MCM2:CPU< 42-43 >,MCM3:CPU< 58-59 >,MCM0:CPU< 12-13 >,MCM1:CPU< 28-29 >,MCM2:CPU< 44-45 >,MCM3:CPU< 60-61 >,MCM0:CPU< 14-15 >,MCM1:CPU< 30-31 >,MCM2:CPU< 46-47 >,MCM3:CPU< 62-63 >
+                   + p6093.huygens.sara.nl:RUNNING:,MCM0:CPU< 0-1 >,MCM1:CPU< 16-17 >,MCM2:CPU< 32-33 >,MCM3:CPU< 48-49 >,MCM0:CPU< 2-3 >,MCM1:CPU< 18-19 >,MCM2:CPU< 34-35 >,MCM3:CPU< 50-51 >,MCM0:CPU< 4-5 >,MCM1:CPU< 20-21 >,MCM2:CPU< 36-37 >,MCM3:CPU< 52-53 >,MCM0:CPU< 6-7 >,MCM1:CPU< 22-23 >,MCM2:CPU< 38-39 >,MCM3:CPU< 54-55 >,MCM0:CPU< 8-9 >,MCM1:CPU< 24-25 >,MCM2:CPU< 40-41 >,MCM3:CPU< 56-57 >,MCM0:CPU< 10-11 >,MCM1:CPU< 26-27 >,MCM2:CPU< 42-43 >,MCM3:CPU< 58-59 >,MCM0:CPU< 12-13 >,MCM1:CPU< 28-29 >,MCM2:CPU< 44-45 >,MCM3:CPU< 60-61 >,MCM0:CPU< 14-15 >,MCM1:CPU< 30-31 >,MCM2:CPU< 46-47 >,MCM3:CPU< 62-63 >
+                   + p6094.huygens.sara.nl:RUNNING:,MCM0:CPU< 0-1 >,MCM1:CPU< 16-17 >,MCM2:CPU< 32-33 >,MCM3:CPU< 48-49 >,MCM0:CPU< 2-3 >,MCM1:CPU< 18-19 >,MCM2:CPU< 34-35 >,MCM3:CPU< 50-51 >,MCM0:CPU< 4-5 >,MCM1:CPU< 20-21 >,MCM2:CPU< 36-37 >,MCM3:CPU< 52-53 >,MCM0:CPU< 6-7 >,MCM1:CPU< 22-23 >,MCM2:CPU< 38-39 >,MCM3:CPU< 54-55 >,MCM0:CPU< 8-9 >,MCM1:CPU< 24-25 >,MCM2:CPU< 40-41 >,MCM3:CPU< 56-57 >,MCM0:CPU< 10-11 >,MCM1:CPU< 26-27 >,MCM2:CPU< 42-43 >,MCM3:CPU< 58-59 >,MCM0:CPU< 12-13 >,MCM1:CPU< 28-29 >,MCM2:CPU< 44-45 >,MCM3:CPU< 60-61 >,MCM0:CPU< 14-15 >,MCM1:CPU< 30-31 >,MCM2:CPU< 46-47 >,MCM3:CPU< 62-63 >
+                   + p6095.huygens.sara.nl:RUNNING:,MCM0:CPU< 0-1 >,MCM1:CPU< 16-17 >,MCM2:CPU< 32-33 >,MCM3:CPU< 48-49 >,MCM0:CPU< 2-3 >,MCM1:CPU< 18-19 >,MCM2:CPU< 34-35 >,MCM3:CPU< 50-51 >,MCM0:CPU< 4-5 >,MCM1:CPU< 20-21 >,MCM2:CPU< 36-37 >,MCM3:CPU< 52-53 >,MCM0:CPU< 6-7 >,MCM1:CPU< 22-23 >,MCM2:CPU< 38-39 >,MCM3:CPU< 54-55 >,MCM0:CPU< 8-9 >,MCM1:CPU< 24-25 >,MCM2:CPU< 40-41 >,MCM3:CPU< 56-57 >,MCM0:CPU< 10-11 >,MCM1:CPU< 26-27 >,MCM2:CPU< 42-43 >,MCM3:CPU< 58-59 >,MCM0:CPU< 12-13 >,MCM1:CPU< 28-29 >,MCM2:CPU< 44-45 >,MCM3:CPU< 60-61 >,MCM0:CPU< 14-15 >,MCM1:CPU< 30-31 >,MCM2:CPU< 46-47 >,MCM3:CPU< 62-63 >
+
+   Master Task
+   -----------
+
+      Executable   : /home/bissstud/Students11/d.taviani/BSP-2D-DFT/jobscripts/js128
+      Exec Args    : 
+      Num Task Inst: 1
+      Task Instance: p6092:-1:,
+
+   Task
+   ----
+
+      Num Task Inst: 128
+      Task Instance: p6092:0:,MCM0:CPU< 0-1 >
+      Task Instance: p6092:1:,MCM1:CPU< 16-17 >
+      Task Instance: p6092:2:,MCM2:CPU< 32-33 >
+      Task Instance: p6092:3:,MCM3:CPU< 48-49 >
+      Task Instance: p6092:4:,MCM0:CPU< 2-3 >
+      Task Instance: p6092:5:,MCM1:CPU< 18-19 >
+      Task Instance: p6092:6:,MCM2:CPU< 34-35 >
+      Task Instance: p6092:7:,MCM3:CPU< 50-51 >
+      Task Instance: p6092:8:,MCM0:CPU< 4-5 >
+      Task Instance: p6092:9:,MCM1:CPU< 20-21 >
+      Task Instance: p6092:10:,MCM2:CPU< 36-37 >
+      Task Instance: p6092:11:,MCM3:CPU< 52-53 >
+      Task Instance: p6092:12:,MCM0:CPU< 6-7 >
+      Task Instance: p6092:13:,MCM1:CPU< 22-23 >
+      Task Instance: p6092:14:,MCM2:CPU< 38-39 >
+      Task Instance: p6092:15:,MCM3:CPU< 54-55 >
+      Task Instance: p6092:16:,MCM0:CPU< 8-9 >
+      Task Instance: p6092:17:,MCM1:CPU< 24-25 >
+      Task Instance: p6092:18:,MCM2:CPU< 40-41 >
+      Task Instance: p6092:19:,MCM3:CPU< 56-57 >
+      Task Instance: p6092:20:,MCM0:CPU< 10-11 >
+      Task Instance: p6092:21:,MCM1:CPU< 26-27 >
+      Task Instance: p6092:22:,MCM2:CPU< 42-43 >
+      Task Instance: p6092:23:,MCM3:CPU< 58-59 >
+      Task Instance: p6092:24:,MCM0:CPU< 12-13 >
+      Task Instance: p6092:25:,MCM1:CPU< 28-29 >
+      Task Instance: p6092:26:,MCM2:CPU< 44-45 >
+      Task Instance: p6092:27:,MCM3:CPU< 60-61 >
+      Task Instance: p6092:28:,MCM0:CPU< 14-15 >
+      Task Instance: p6092:29:,MCM1:CPU< 30-31 >
+      Task Instance: p6092:30:,MCM2:CPU< 46-47 >
+      Task Instance: p6092:31:,MCM3:CPU< 62-63 >
+      Task Instance: p6093:32:,MCM0:CPU< 0-1 >
+      Task Instance: p6093:33:,MCM1:CPU< 16-17 >
+      Task Instance: p6093:34:,MCM2:CPU< 32-33 >
+      Task Instance: p6093:35:,MCM3:CPU< 48-49 >
+      Task Instance: p6093:36:,MCM0:CPU< 2-3 >
+      Task Instance: p6093:37:,MCM1:CPU< 18-19 >
+      Task Instance: p6093:38:,MCM2:CPU< 34-35 >
+      Task Instance: p6093:39:,MCM3:CPU< 50-51 >
+      Task Instance: p6093:40:,MCM0:CPU< 4-5 >
+      Task Instance: p6093:41:,MCM1:CPU< 20-21 >
+      Task Instance: p6093:42:,MCM2:CPU< 36-37 >
+      Task Instance: p6093:43:,MCM3:CPU< 52-53 >
+      Task Instance: p6093:44:,MCM0:CPU< 6-7 >
+      Task Instance: p6093:45:,MCM1:CPU< 22-23 >
+      Task Instance: p6093:46:,MCM2:CPU< 38-39 >
+      Task Instance: p6093:47:,MCM3:CPU< 54-55 >
+      Task Instance: p6093:48:,MCM0:CPU< 8-9 >
+      Task Instance: p6093:49:,MCM1:CPU< 24-25 >
+      Task Instance: p6093:50:,MCM2:CPU< 40-41 >
+      Task Instance: p6093:51:,MCM3:CPU< 56-57 >
+      Task Instance: p6093:52:,MCM0:CPU< 10-11 >
+      Task Instance: p6093:53:,MCM1:CPU< 26-27 >
+      Task Instance: p6093:54:,MCM2:CPU< 42-43 >
+      Task Instance: p6093:55:,MCM3:CPU< 58-59 >
+      Task Instance: p6093:56:,MCM0:CPU< 12-13 >
+      Task Instance: p6093:57:,MCM1:CPU< 28-29 >
+      Task Instance: p6093:58:,MCM2:CPU< 44-45 >
+      Task Instance: p6093:59:,MCM3:CPU< 60-61 >
+      Task Instance: p6093:60:,MCM0:CPU< 14-15 >
+      Task Instance: p6093:61:,MCM1:CPU< 30-31 >
+      Task Instance: p6093:62:,MCM2:CPU< 46-47 >
+      Task Instance: p6093:63:,MCM3:CPU< 62-63 >
+      Task Instance: p6094:64:,MCM0:CPU< 0-1 >
+      Task Instance: p6094:65:,MCM1:CPU< 16-17 >
+      Task Instance: p6094:66:,MCM2:CPU< 32-33 >
+      Task Instance: p6094:67:,MCM3:CPU< 48-49 >
+      Task Instance: p6094:68:,MCM0:CPU< 2-3 >
+      Task Instance: p6094:69:,MCM1:CPU< 18-19 >
+      Task Instance: p6094:70:,MCM2:CPU< 34-35 >
+      Task Instance: p6094:71:,MCM3:CPU< 50-51 >
+      Task Instance: p6094:72:,MCM0:CPU< 4-5 >
+      Task Instance: p6094:73:,MCM1:CPU< 20-21 >
+      Task Instance: p6094:74:,MCM2:CPU< 36-37 >
+      Task Instance: p6094:75:,MCM3:CPU< 52-53 >
+      Task Instance: p6094:76:,MCM0:CPU< 6-7 >
+      Task Instance: p6094:77:,MCM1:CPU< 22-23 >
+      Task Instance: p6094:78:,MCM2:CPU< 38-39 >
+      Task Instance: p6094:79:,MCM3:CPU< 54-55 >
+      Task Instance: p6094:80:,MCM0:CPU< 8-9 >
+      Task Instance: p6094:81:,MCM1:CPU< 24-25 >
+      Task Instance: p6094:82:,MCM2:CPU< 40-41 >
+      Task Instance: p6094:83:,MCM3:CPU< 56-57 >
+      Task Instance: p6094:84:,MCM0:CPU< 10-11 >
+      Task Instance: p6094:85:,MCM1:CPU< 26-27 >
+      Task Instance: p6094:86:,MCM2:CPU< 42-43 >
+      Task Instance: p6094:87:,MCM3:CPU< 58-59 >
+      Task Instance: p6094:88:,MCM0:CPU< 12-13 >
+      Task Instance: p6094:89:,MCM1:CPU< 28-29 >
+      Task Instance: p6094:90:,MCM2:CPU< 44-45 >
+      Task Instance: p6094:91:,MCM3:CPU< 60-61 >
+      Task Instance: p6094:92:,MCM0:CPU< 14-15 >
+      Task Instance: p6094:93:,MCM1:CPU< 30-31 >
+      Task Instance: p6094:94:,MCM2:CPU< 46-47 >
+      Task Instance: p6094:95:,MCM3:CPU< 62-63 >
+      Task Instance: p6095:96:,MCM0:CPU< 0-1 >
+      Task Instance: p6095:97:,MCM1:CPU< 16-17 >
+      Task Instance: p6095:98:,MCM2:CPU< 32-33 >
+      Task Instance: p6095:99:,MCM3:CPU< 48-49 >
+      Task Instance: p6095:100:,MCM0:CPU< 2-3 >
+      Task Instance: p6095:101:,MCM1:CPU< 18-19 >
+      Task Instance: p6095:102:,MCM2:CPU< 34-35 >
+      Task Instance: p6095:103:,MCM3:CPU< 50-51 >
+      Task Instance: p6095:104:,MCM0:CPU< 4-5 >
+      Task Instance: p6095:105:,MCM1:CPU< 20-21 >
+      Task Instance: p6095:106:,MCM2:CPU< 36-37 >
+      Task Instance: p6095:107:,MCM3:CPU< 52-53 >
+      Task Instance: p6095:108:,MCM0:CPU< 6-7 >
+      Task Instance: p6095:109:,MCM1:CPU< 22-23 >
+      Task Instance: p6095:110:,MCM2:CPU< 38-39 >
+      Task Instance: p6095:111:,MCM3:CPU< 54-55 >
+      Task Instance: p6095:112:,MCM0:CPU< 8-9 >
+      Task Instance: p6095:113:,MCM1:CPU< 24-25 >
+      Task Instance: p6095:114:,MCM2:CPU< 40-41 >
+      Task Instance: p6095:115:,MCM3:CPU< 56-57 >
+      Task Instance: p6095:116:,MCM0:CPU< 10-11 >
+      Task Instance: p6095:117:,MCM1:CPU< 26-27 >
+      Task Instance: p6095:118:,MCM2:CPU< 42-43 >
+      Task Instance: p6095:119:,MCM3:CPU< 58-59 >
+      Task Instance: p6095:120:,MCM0:CPU< 12-13 >
+      Task Instance: p6095:121:,MCM1:CPU< 28-29 >
+      Task Instance: p6095:122:,MCM2:CPU< 44-45 >
+      Task Instance: p6095:123:,MCM3:CPU< 60-61 >
+      Task Instance: p6095:124:,MCM0:CPU< 14-15 >
+      Task Instance: p6095:125:,MCM1:CPU< 30-31 >
+      Task Instance: p6095:126:,MCM2:CPU< 46-47 >
+      Task Instance: p6095:127:,MCM3:CPU< 62-63 >
+--------------------------------------------------------------------------------
+Job Step Status on Allocated Hosts 
+----------------------------------
+
+    p6092.huygens.sara.nl:RUNNING
+    p6093.huygens.sara.nl:RUNNING
+    p6095.huygens.sara.nl:RUNNING
+    p6094.huygens.sara.nl:RUNNING
+
+### End of summarized "llq" output ###

@@ -12,3 +12,4 @@ bench
 transpose
 tmk.sh
 fft2d
+transpose_bin

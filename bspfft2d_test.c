@@ -7,9 +7,9 @@
 
 int M,N,n0,n1;
 
-void bspfft2d_test(){
-  int p, pid, q, s, t, n0, n1, nlr, nlc, i, j;//,k1, *rho_np, *rho_p;
-  double **a;
+void bspfft2d_test(n0,n1){
+  int p, pid, q, s, t, nlr, nlc, i, j;
+  double **a,time0,time1;
   
   bsp_begin(M*N);
   p=bsp_nprocs(); /* p=M*N */
@@ -21,14 +21,6 @@ void bspfft2d_test(){
   bsp_sync();
   
    if (pid==0){
-       /* printf("Please enter matrix row size n0:\n");
-        scanf("%d",&n0);
-        if(n0<2*M) bsp_abort("Error in input: n0 < 2M");
-        printf("Please enter matrix column size n1:\n");
-        scanf("%d",&n1);
-        if(n1<2*N) bsp_abort("Error in input: n1 < 2N");*/
-        n0=8;
-        n1=8;
         for (q=0; q<p; q++){
             bsp_put(q,&M,&M,0,SZINT);
             bsp_put(q,&N,&N,0,SZINT);
@@ -66,7 +58,6 @@ void bspfft2d_test(){
     /*
     Matrix creation
     */
-    double k=1.0; 
     
     for(i=0;i<nlr;i++)
       for(j=0; j<nlc; j++){
@@ -74,11 +65,17 @@ void bspfft2d_test(){
         a[i][2*j+1]= 1.0;
       }
 
-a = bspfft2d(a,n0,n1,M,N,s,t,1);
-   // bspfft2d(a,n0,n1,M,N,s,t,-1,w0,w,tw,rho_np,rho_p);
-    
+bsp_sync();
+time0 = bsp_time();
 
-printm(a,nlr,nlc,s,t);
+a = bspfft2d(a,n0,n1,M,N,s,t,1);
+a=  bspfft2d(a,n0,n1,M,N,s,t,-1);
+    
+bsp_sync();
+time1=bsp_time();
+
+printf("(%d,%d) Time elapsed: %f\n",s,t,time1-time0);
+//printm(a,nlr,nlc,s,t);
 
     //bsp_sync();
   
@@ -91,20 +88,19 @@ printm(a,nlr,nlc,s,t);
 int main(int argc, char **argv){
   
   bsp_init(bspfft2d_test, argc, argv);
-  /*
-  printf("Please enter number of processor rows M:\n");
-    scanf("%d",&M);
-    printf("Please enter number of processor columns N:\n");
-    scanf("%d",&N);
-    if (M*N > bsp_nprocs()){
-        printf("Sorry, not enough processors available.\n"); 
-        fflush(stdout);
-        exit(1);
-        }*/
-        M=4;
-        N=2;
+  if (argc>0){
+      M = atoi(argv[1]);
+      N = atoi(argv[2]);
+      if(M*N>bsp_nprocs()) bsp_abort("**Sorry, not enough processors available.**\n");
+      n0 = atoi(argv[3]);
+      n1 = atoi(argv[4]);
+      if(n0%2 != 0 || n1%2 != 0) bsp_abort("**Please provide powers of 2 as parameters**\n");
+    }
+    else{
+      bsp_abort("**Please provide parameters as arguments**");
+    }
 
-    bspfft2d_test();
+    bspfft2d_test(n0,n1);
   
   exit(0);
   

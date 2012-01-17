@@ -9,12 +9,10 @@
   * sign,....
   **/
 
-//double **a; 
 int nloc(int p, int s, int n){
-  /* Compute number of local components of processor s for vector
-  of length n distributed cyclically over p processors. */
+  /* # of component of a vector of length n owned by s (p procs in total) using cyclic distribution */
   return  (n+p-s-1)/p ;
-} /* end nloc */
+}
 
 
 void printm(double **a, int m, int n,int s, int t){
@@ -275,8 +273,7 @@ void ufft(double *x, int n, int sign, double *w){
       destproc = (jglob/(c1*length))*c1 + jglob%c1; 
       
       destproc = (col == 0 ? s+M*destproc : M*t+destproc);
-      
-    
+         
       /*
       * the first term of the sum is because we don't really know
       * the address of a[i] in the destproc, so we start from the
@@ -389,6 +386,7 @@ void ufft(double *x, int n, int sign, double *w){
   * Produces a n x 2m matrix in the same way (the imaginary part is still on the right)
   * Warning: memory needs to be freed afterwards
   */
+
 double **transpose(double **a,int m,int n){
   double **tmp;
   int i,j;
@@ -425,11 +423,11 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   bsp_sync();
   
   //FFT on the rows
-  //bspfft1d(a,n1,nlr,nlc,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,0);
   bspfft1d(a,n1,nlr,nlc,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pa,1);
   
-  pa = a[0];
+ // pa = a[0];
   bsp_pop_reg(pa);
+  
   /*
   //transposing the local matrix "a" and pointing to its beginning
   double **trasp;
@@ -439,15 +437,14 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   bsp_push_reg(pt,2*nlr*nlc*SZDBL);
   bsp_sync();
   
-  
   //FFT on the columns
   bspfft1d(trasp,n0,nlc,nlr,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,1);
-  
   
   transpose it back
   a = transpose(trasp,nlc,nlr);
   matfreed(trasp);
   bsp_pop_reg(pt);*/
+  
   bsp_sync();
   return a;
 }

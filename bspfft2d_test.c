@@ -8,8 +8,8 @@
 int M,N,n0,n1;
 
 void bspfft2d_test(){
-  int p, pid, q, s, t, n0, n1, nlr, nlc, i, j,k1, *rho_np, *rho_p;
-  double *w0, *w, *tw, **a;
+  int p, pid, q, s, t, n0, n1, nlr, nlc, i, j;//,k1, *rho_np, *rho_p;
+  double **a;
   
   bsp_begin(M*N);
   p=bsp_nprocs(); /* p=M*N */
@@ -61,14 +61,7 @@ void bspfft2d_test(){
     }
     
    
-    // old: np = n/p , now every local fft is of the length nlc
-    
-    k1= k1_init(n1,N,nlc);
-    w0= vecallocd(k1);
-    w=  vecallocd(nlc);
-    tw= vecallocd(2*nlc+N);
-    rho_np=vecalloci(nlc);
-    rho_p=vecalloci(N);
+  // old: np = n/p , now every local fft is of the length nlc
     
     /*
     Matrix creation
@@ -81,25 +74,18 @@ void bspfft2d_test(){
         a[i][2*j+1]= 1.0;
       }
  
-  //initialize the tables
-    bspfft1d_init(n1,N,s,t,w0,w,tw,rho_np,rho_p);
+ 
+ 
     
     
-    a = bspfft2d(a,n0,n1,M,N,s,t,1,w0,w,tw,rho_np,rho_p);
+    a = bspfft2d(a,n0,n1,M,N,s,t,1);
    // bspfft2d(a,n0,n1,M,N,s,t,-1,w0,w,tw,rho_np,rho_p);
     
 
-  if(s==0 && t==0 )printf("----------\n");
-  sleep(1);
+printm(a,nlr,nlc,s,t);
 
     //bsp_sync();
-    
   
-    vecfreei(rho_p);
-    vecfreei(rho_np);
-    vecfreed(tw);
-    vecfreed(w);
-    vecfreed(w0);
     matfreed(a);
     
     bsp_end();

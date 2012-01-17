@@ -282,12 +282,13 @@ void ufft(double *x, int n, int sign, double *w){
 
       destindex= i*length+(jglob%(c1*length))/c1;
       
-      /*if ((s+t)%2 == 0)*/ //printf("(%d,%d) dest=%d index=%d\n",s,t,destproc,destindex);
     
       for(r=0; r<size; r++){
         tmp[2*r]=x[2*(j+r*ratio)];
         tmp[2*r+1]= x[2*(j+r*ratio)+1];
       }
+      
+  //    printf("(%d,%d) a%d%d dest=%d index=%d\n",s,t,i,2*j,destproc,destindex);
       bsp_put(destproc,tmp,pm,destindex*2*SZDBL,size*2*SZDBL);
     }
     vecfreed(tmp);
@@ -324,15 +325,18 @@ void ufft(double *x, int n, int sign, double *w){
       rev= TRUE;
       for(r=0; r<nlc/k1; r++) ufft(&a[i][2*r*k1],k1,sign,w0);
     }
-         
+    
+//  printm(a,nlr,nlc,s,t);
+ /* if(s==0 && t==0 )printf("----------\n");
+  sleep(1);*/
+             
     c0= 1;
     ntw= 0;
     for (c=k1; c<=N; c *=nlc){
       //2 step: for every row redistribute it (according to col)
       for(i=0;i<nlr;i++) bspredistr(a[i],i,nlc,M,N,s,t,c0,c,rev,rho_p,pa,col);        
       bsp_sync();  //sync is done only after every row has been redistributed
-  
-      
+    
       rev= FALSE;
       //3 step: twiddle and perform an unordered fft on every row
       for(i=0;i<nlr;i++){ 
@@ -398,8 +402,7 @@ double **transpose(double **a,int m,int n){
   return tmp;
 }
   
-double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,
-              int t,int sign, double *w0, double *w, double *tw, int *rho_np, int *rho_p){
+double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign){
                 
   /**
   a = input matrix (local)
@@ -412,8 +415,8 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   w0,w,tw,rho_np,rho_p tables needed for 1D fft
   */
   
-  double *pa,*pt;
-  int nlr, nlc,i,j;
+  double *pa,*pt,*w0, *w, *tw;
+  int nlr, nlc,i,j,k1, *rho_np, *rho_p;
   
   nlr=  nloc(M,s,n0); // number of local rows 
   nlc=  nloc(N,t,n1); // number of local columns 
@@ -422,28 +425,63 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   bsp_push_reg(pa,2*nlr*nlc*SZDBL);
   bsp_sync();
   
+  k1= k1_init(n1,N,nlc);
+  w0= vecallocd(k1);
+  w=  vecallocd(nlc);
+  tw= vecallocd(2*nlc+N);
+  rho_np=vecalloci(nlc);
+  rho_p=vecalloci(N);
+  
+  
+  bspfft1d_init(n1,N,s,t,w0,w,tw,rho_np,rho_p);
+  
   //FFT on the rows
-  bspfft1d(a,n1,nlr,nlc,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pa,1);
+  bspfft1d(a,n1,nlr,nlc,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pa,0);
   
  // pa = a[0];
   bsp_pop_reg(pa);
   
-  /*
+  vecfreei(rho_p);
+  vecfreei(rho_np);
+  vecfreed(tw);
+  vecfreed(w);
+  vecfreed(w0);
+  
+  
   //transposing the local matrix "a" and pointing to its beginning
   double **trasp;
   trasp = transpose(a,nlr,nlc);
   pt = trasp[0];
- 
+  
+  k1= k1_init(n0,M,nlr);
+  w0= vecallocd(k1);
+  w=  vecallocd(nlr);
+  tw= vecallocd(2*nlr+M);
+  rho_np=vecalloci(nlr);
+  rho_p=vecalloci(M);
+  
+ // printm(trasp,nlc,nlr,s,t);
+  
+  bspfft1d_init(n0,M,s,t,w0,w,tw,rho_np,rho_p);
+   
   bsp_push_reg(pt,2*nlr*nlc*SZDBL);
   bsp_sync();
   
   //FFT on the columns
-  bspfft1d(trasp,n0,nlc,nlr,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,1);
-  
-  transpose it back
+  bspfft1d(trasp,n0,nlc,nlr,N,M,s,t,sign,w0,w,tw,rho_np,rho_p,pt,0);
+
+
+//  transpose it back
   a = transpose(trasp,nlc,nlr);
   matfreed(trasp);
-  bsp_pop_reg(pt);*/
+  bsp_pop_reg(pt);
+  
+  vecfreei(rho_p);
+  vecfreei(rho_np);
+  vecfreed(tw);
+  vecfreed(w);
+  vecfreed(w0);
+
   
   bsp_sync();
   return a;

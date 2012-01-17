@@ -1,5 +1,4 @@
 #include "BSPedupack/bspedupack.c"
-//#include "BSPedupack/bspfft.c"
 
 /**
   * 2-Dimensional Fast Fourier Transform
@@ -286,7 +285,7 @@ void ufft(double *x, int n, int sign, double *w){
 
       destindex= i*length+(jglob%(c1*length))/c1;
       
-      /*if ((s+t)%2 == 0)*/ printf("(%d,%d) dest=%d index=%d\n",s,t,destproc,destindex);
+      /*if ((s+t)%2 == 0)*/ //printf("(%d,%d) dest=%d index=%d\n",s,t,destproc,destindex);
     
       for(r=0; r<size; r++){
         tmp[2*r]=x[2*(j+r*ratio)];
@@ -328,8 +327,7 @@ void ufft(double *x, int n, int sign, double *w){
       rev= TRUE;
       for(r=0; r<nlc/k1; r++) ufft(&a[i][2*r*k1],k1,sign,w0);
     }
-     
-    
+         
     c0= 1;
     ntw= 0;
     for (c=k1; c<=N; c *=nlc){
@@ -337,8 +335,7 @@ void ufft(double *x, int n, int sign, double *w){
       for(i=0;i<nlr;i++) bspredistr(a[i],i,nlc,M,N,s,t,c0,c,rev,rho_p,pa,col);        
       bsp_sync();  //sync is done only after every row has been redistributed
   
- //  printm(a,nlr,nlc,s,t);
-  
+      
       rev= FALSE;
       //3 step: twiddle and perform an unordered fft on every row
       for(i=0;i<nlr;i++){ 
@@ -417,49 +414,40 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,
   w0,w,tw,rho_np,rho_p tables needed for 1D fft
   */
   
-  double *pm;
+  double *pa,*pt;
   int nlr, nlc,i,j;
   
   nlr=  nloc(M,s,n0); // number of local rows 
   nlc=  nloc(N,t,n1); // number of local columns 
   
-  pm= (nlr>0 ? a[0] : NULL);
-  bsp_push_reg(pm,2*nlr*nlc*SZDBL);
+  pa= (nlr>0 ? a[0] : NULL);
+  bsp_push_reg(pa,2*nlr*nlc*SZDBL);
   bsp_sync();
   
   //FFT on the rows
   //bspfft1d(a,n1,nlr,nlc,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,0);
-  bspfft1d(a,n1,nlr,nlc,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,1);
+  bspfft1d(a,n1,nlr,nlc,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pa,1);
   
-  pm = a[0];
-  bsp_pop_reg(pm);
-  
+  pa = a[0];
+  bsp_pop_reg(pa);
+  /*
   //transposing the local matrix "a" and pointing to its beginning
   double **trasp;
   trasp = transpose(a,nlr,nlc);
-  pm = trasp[0];
+  pt = trasp[0];
  
-  bsp_push_reg(pm,2*nlr*nlc*SZDBL);
+  bsp_push_reg(pt,2*nlr*nlc*SZDBL);
   bsp_sync();
   
   
   //FFT on the columns
-//bspfft1d(trasp,n0,nlc,nlr,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,1);
-  
-   //  printf("Output:\n");
-/*  for(i=0;i<nlc;i++){
-    printf("(%d,%d): ",s,t);
-    for(j=0;j<nlr;j++){
-      printf("t%d%d=%d  t%d%d=%d  ",i,2*j,(int)trasp[i][2*j],i,2*j+1,(int)trasp[i][2*j+1]);
-    }
-    printf("\n");
-  }*/
+  bspfft1d(trasp,n0,nlc,nlr,M,N,s,t,sign,w0,w,tw,rho_np,rho_p,pm,1);
   
   
-   //transpose it back
+  transpose it back
   a = transpose(trasp,nlc,nlr);
   matfreed(trasp);
-  bsp_pop_reg(pm);
+  bsp_pop_reg(pt);*/
   bsp_sync();
   return a;
 }

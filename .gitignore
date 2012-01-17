@@ -11,3 +11,4 @@ matvec
 bench
 transpose
 tmk.sh
+fft2d

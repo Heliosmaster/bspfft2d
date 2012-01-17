@@ -259,7 +259,6 @@ void ufft(double *x, int n, int sign, double *w){
     size= MAX(length/ratio,1);
     npackets= length/size;
     tmp= vecallocd(2*size);
-     
     
     if (rev) {
       j0= rho_p[t]%c0;
@@ -272,23 +271,25 @@ void ufft(double *x, int n, int sign, double *w){
       jglob= j2*c0*length + j*c0 + j0;
       destproc = (jglob/(c1*length))*c1 + jglob%c1; 
       
-      destproc = (col == 0 ? s+M*destproc : M*t+destproc);
+      destproc = (col == 0 ? s+M*destproc : N*s+destproc);
          
       /*
       * the first term of the sum is because we don't really know
       * the address of a[i] in the destproc, so we start from the
       * beginning of a and jump
       */
-
-      destindex= i*length+(jglob%(c1*length))/c1;
-      
+    destindex = (jglob%(c1*length))/c1;
+  //  if(s==1) destindex++;
     
       for(r=0; r<size; r++){
         tmp[2*r]=x[2*(j+r*ratio)];
         tmp[2*r+1]= x[2*(j+r*ratio)+1];
       }
       
-  //    printf("(%d,%d) a%d%d dest=%d index=%d\n",s,t,i,2*j,destproc,destindex);
+     //printf("(%d,%d) a%d%d dest=%d old=%d new=%d\n",s,t,i,2*j,destproc,destindex,i*length+destindex);
+  //  if(s+t!=0) printf("(%d,%d) a%d%d j2:%d j:%d j:%d c0:%d\n",s,t,i,2*j,j2,j,j0,c0);
+        destindex= i*length+destindex;
+    
       bsp_put(destproc,tmp,pm,destindex*2*SZDBL,size*2*SZDBL);
     }
     vecfreed(tmp);
@@ -315,8 +316,7 @@ void ufft(double *x, int n, int sign, double *w){
     char rev;
     int k1, r, c0, c, ntw, j,i;
     double ninv;
-
-   
+      
     k1= k1_init(n1,N,nlc);
    
   // 1 step: for every row, permute and compute a local, unordered fft  
@@ -325,7 +325,7 @@ void ufft(double *x, int n, int sign, double *w){
       rev= TRUE;
       for(r=0; r<nlc/k1; r++) ufft(&a[i][2*r*k1],k1,sign,w0);
     }
-    
+              
 //  printm(a,nlr,nlc,s,t);
  /* if(s==0 && t==0 )printf("----------\n");
   sleep(1);*/
@@ -336,6 +336,8 @@ void ufft(double *x, int n, int sign, double *w){
       //2 step: for every row redistribute it (according to col)
       for(i=0;i<nlr;i++) bspredistr(a[i],i,nlc,M,N,s,t,c0,c,rev,rho_p,pa,col);        
       bsp_sync();  //sync is done only after every row has been redistributed
+
+//  printm(a,nlr,nlc,s,t);
     
       rev= FALSE;
       //3 step: twiddle and perform an unordered fft on every row
@@ -346,8 +348,9 @@ void ufft(double *x, int n, int sign, double *w){
       c0= c;
       ntw++;
     }
+      
 
-    
+
     //if sign=-1 we are interested in computing the inverse fft
     
     if (sign==-1){
@@ -432,6 +435,7 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign
   rho_np=vecalloci(nlc);
   rho_p=vecalloci(N);
   
+  //printm(a,nlr,nlc,s,t);
   
   bspfft1d_init(n1,N,s,t,w0,w,tw,rho_np,rho_p);
   
@@ -446,8 +450,7 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign
   vecfreed(tw);
   vecfreed(w);
   vecfreed(w0);
-  
-  
+
   //transposing the local matrix "a" and pointing to its beginning
   double **trasp;
   trasp = transpose(a,nlr,nlc);
@@ -460,7 +463,7 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign
   rho_np=vecalloci(nlr);
   rho_p=vecalloci(M);
   
- // printm(trasp,nlc,nlr,s,t);
+//  printm(trasp,nlc,nlr,s,t);
   
   bspfft1d_init(n0,M,s,t,w0,w,tw,rho_np,rho_p);
    
@@ -468,9 +471,9 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign
   bsp_sync();
   
   //FFT on the columns
-  bspfft1d(trasp,n0,nlc,nlr,N,M,s,t,sign,w0,w,tw,rho_np,rho_p,pt,0);
+ bspfft1d(trasp,n0,nlc,nlr,N,M,t,s,sign,w0,w,tw,rho_np,rho_p,pt,1);
 
-
+// printm(trasp,nlc,nlr,s,t);
 //  transpose it back
   a = transpose(trasp,nlc,nlr);
   matfreed(trasp);

@@ -27,8 +27,8 @@ void bspfft2d_test(){
         printf("Please enter matrix column size n1:\n");
         scanf("%d",&n1);
         if(n1<2*N) bsp_abort("Error in input: n1 < 2N");*/
-        n0=4;
-        n1=4;
+        n0=8;
+        n1=8;
         for (q=0; q<p; q++){
             bsp_put(q,&M,&M,0,SZINT);
             bsp_put(q,&N,&N,0,SZINT);
@@ -73,12 +73,8 @@ void bspfft2d_test(){
         a[i][2*j]= 2.0;
         a[i][2*j+1]= 1.0;
       }
- 
- 
- 
-    
-    
-    a = bspfft2d(a,n0,n1,M,N,s,t,1);
+
+a = bspfft2d(a,n0,n1,M,N,s,t,1);
    // bspfft2d(a,n0,n1,M,N,s,t,-1,w0,w,tw,rho_np,rho_p);
     
 
@@ -105,7 +101,7 @@ int main(int argc, char **argv){
         fflush(stdout);
         exit(1);
         }*/
-        M=2;
+        M=4;
         N=2;
 
     bspfft2d_test();

@@ -3,18 +3,18 @@
 #include <math.h> 
 #include "bspfft2d_transpose.c"
 
-#define NITERS 1
-
 int P,n0,n1;
 
 void bspfft2d_transpose_test(n0,n1){
   int i,j,p,s,nlr,nlc,it;
-  double **a,time0,time1;
+  double **a,time0,time1,*times,tim,tia;
   
   bsp_begin(P);
   p= bsp_nprocs();
   s= bsp_pid();
+  times = vecallocd(p);
   
+  bsp_push_reg(times,p*SZDBL);
   bsp_push_reg(&n0,SZINT);
   bsp_push_reg(&n1,SZINT);
   
@@ -54,23 +54,38 @@ void bspfft2d_transpose_test(n0,n1){
   bsp_sync();
   time0 = bsp_time();
   
-  for(it=0;it<NITERS;it++){
-    bspfft2d_transpose(a,nlr,nlc,1);    // forward 2D fft
-    bspfft2d_transpose(a,nlr,nlc,-1);   //backward 2d fft
-  }
+  bspfft2d_transpose(a,nlr,nlc,1);    // forward 2D fft
+  bspfft2d_transpose(a,nlr,nlc,-1);   //backward 2d fft
+  
 
   bsp_sync();
   time1 = bsp_time();
- 
-  //printm(a,nlr,nlc,s);  
+  
+  tim = time1-time0;
+  bsp_put(0,&tim,times,s*SZDBL,SZDBL);
+  bsp_sync();
+  
+  tia = 0;
+  
+  if(s==0){
+    tim = 0;
+    tia = 0;
+    for(i=0;i<p;i++){
+      tia += times[i];
+      if (times[i]>tim) tim=times[i];
+    }
+    tia = tia/p;
+    printf("Average time: %f\n",tia);
+    printf("Maximum time: %f\n",tim);
+  }
 
-  printf("%d: It took exactly %f seconds for each FFT\n",s,(time1-time0)/NITERS);
 
   
   //free memory and de-register variables
-  
+  vecfreed(times);
   matfreed(a);
   bsp_pop_reg(a);
+  bsp_pop_reg(times);
   bsp_pop_reg(&n0);
   bsp_pop_reg(&n1);
 

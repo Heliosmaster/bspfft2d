@@ -5,6 +5,5 @@ load IBM XL C++ compiler version 10.1 (PATH, NLSPATH, MANPATH)
 load IBM XL Fortran compiler version 12.1 (PATH, NLSPATH, MANPATH)
 load BSPonMPI-0.3 library.
 load BSPonMPI-0.3 library.
-make: mpicc: Command not found
-make: *** [mxn] Error 127
-./bspfft2d.sh: line 4: ./fft2d: No such file or directory
+"bspfft2d_test.c", line 90.12: 1506-280 (W) Function argument assignment between types "void(*)(void)" and "void(*)()" is not allowed.
+ATTENTION: 0031-408  32 tasks allocated by Resource Manager, continuing...

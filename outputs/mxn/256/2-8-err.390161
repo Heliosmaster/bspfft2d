@@ -1,0 +1,24 @@
+load SARA Compiler Wrappers (PATH).
+load IBM Java 5 SDK version 1.5 (JAVA_HOME PATH)
+load IBM XL C compiler version 10.1 (PATH, NLSPATH, MANPATH)
+load IBM XL C++ compiler version 10.1 (PATH, NLSPATH, MANPATH)
+load IBM XL Fortran compiler version 12.1 (PATH, NLSPATH, MANPATH)
+load BSPonMPI-0.3 library.
+load BSPonMPI-0.3 library.
+ATTENTION: 0031-408  16 tasks allocated by Resource Manager, continuing...
+ERROR: 0031-250  task 10: Segmentation fault
+ERROR: 0031-250  task 0: Terminated
+ERROR: 0031-250  task 2: Terminated
+ERROR: 0031-250  task 3: Terminated
+ERROR: 0031-250  task 1: Terminated
+ERROR: 0031-250  task 4: Terminated
+ERROR: 0031-250  task 5: Terminated
+ERROR: 0031-250  task 6: Terminated
+ERROR: 0031-250  task 11: Terminated
+ERROR: 0031-250  task 12: Terminated
+ERROR: 0031-250  task 15: Terminated
+ERROR: 0031-250  task 7: Terminated
+ERROR: 0031-250  task 9: Terminated
+ERROR: 0031-250  task 8: Terminated
+ERROR: 0031-250  task 13: Terminated
+ERROR: 0031-250  task 14: Terminated

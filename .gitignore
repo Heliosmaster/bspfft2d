@@ -1,4 +1,5 @@
 .redcar
+*~
 *.o
 f2
 mk.sh
@@ -9,7 +10,6 @@ lu
 matvec
 ./fft2d
 bench
-transpose
 tmk.sh
 fft2d
 transpose_bin

@@ -9,11 +9,13 @@ int M,N,n0,n1;
 
 void bspfft2d_test(n0,n1){
   int p, pid, q, s, t, nlr, nlc, i, j;
-  double **a,time0,time1;
+  double **a,*times, tim,time0,time1;
   
   bsp_begin(M*N);
   p=bsp_nprocs(); /* p=M*N */
   pid=bsp_pid();
+  times = vecallocd(p);
+  bsp_push_reg(times,p*SZDBL);
   bsp_push_reg(&M,SZINT);
   bsp_push_reg(&N,SZINT);
   bsp_push_reg(&n0,SZINT);
@@ -65,22 +67,40 @@ void bspfft2d_test(n0,n1){
         a[i][2*j+1]= 1.0;
       }
 
-bsp_sync();
-time0 = bsp_time();
+  bsp_sync();
+  time0 = bsp_time();
+  
 
-a = bspfft2d(a,n0,n1,M,N,s,t,1);
-a=  bspfft2d(a,n0,n1,M,N,s,t,-1);
+
+  a=bspfft2d(a,n0,n1,M,N,s,t,1);
+  a=bspfft2d(a,n0,n1,M,N,s,t,-1);
     
-bsp_sync();
-time1=bsp_time();
-
-printf("(%d,%d) Time elapsed: %f\n",s,t,time1-time0);
-//printm(a,nlr,nlc,s,t);
+  bsp_sync();
+  time1=bsp_time();
+  
+  tim = time1-time0;
+  bsp_put(0,&tim,times,pid*SZDBL,SZDBL);
+  bsp_sync();
+  
+  double tia = 0;
+  
+  if(pid==0){
+    tim = 0;
+    tia = 0;
+    for(i=0;i<p;i++){
+      tia += times[i];
+      if (times[i]>tim) tim=times[i];
+    }
+    tia = tia/p;
+    printf("Average time: %f\n",tia);
+    printf("Maximum time: %f\n",tim);
+  }
 
     //bsp_sync();
   
     matfreed(a);
-    
+    vecfreed(times);
+    bsp_pop_reg(times);
     bsp_end();
   
 }

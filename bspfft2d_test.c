@@ -111,13 +111,13 @@ int main(int argc, char **argv){
   if (argc>0){
       M = atoi(argv[1]);
       N = atoi(argv[2]);
-      if(M*N>bsp_nprocs()) bsp_abort("**Sorry, not enough processors available.**\n");
+    //  if(M*N>bsp_nprocs()) bsp_abort("**Sorry, not enough processors available.**\n");
       n0 = atoi(argv[3]);
       n1 = atoi(argv[4]);
-      if(n0%2 != 0 || n1%2 != 0) bsp_abort("**Please provide powers of 2 as parameters**\n");
+     // if(n0%2 != 0 || n1%2 != 0) bsp_abort("**Please provide powers of 2 as parameters**\n");
     }
     else{
-      bsp_abort("**Please provide parameters as arguments**");
+      //bsp_abort("**Please provide parameters as arguments**");
     }
 
     bspfft2d_test(n0,n1);

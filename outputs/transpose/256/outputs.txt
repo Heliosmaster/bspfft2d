@@ -1,0 +1,55 @@
+==> ./16-out.390806 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 16 processors
+Average time: 0.007572
+Maximum time: 0.007581
+
+
+==> ./4-out.390804 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 4 processors
+Average time: 0.023552
+Maximum time: 0.023553
+
+
+==> ./2-out.390803 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 2 processors
+Average time: 0.044485
+Maximum time: 0.044486
+
+
+==> ./8-out.390805 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 8 processors
+Average time: 0.012944
+Maximum time: 0.012945
+
+
+==> ./32-out.390807 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 32 processors
+Average time: 0.006981
+Maximum time: 0.007188
+
+
+==> ./64-out.390808 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 64 processors
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390808.0" invoked on p6003 ###
+        Job Step Id: p6012.huygens.sara.nl.390808.0
+
+==> ./128-out.390809 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 128 processors
+Average time: 0.056572
+Maximum time: 0.057398
+
+
+==> ./256-out.390810 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 256-by-256 using 256 processors
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390810.0" invoked on p6008 ###
+        Job Step Id: p6012.huygens.sara.nl.390810.0

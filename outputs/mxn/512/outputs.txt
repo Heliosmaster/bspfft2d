@@ -1,0 +1,162 @@
+==> ./1-2-out.390467 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 1 by 2 cyclic distribution
+Average time: 0.033096
+Maximum time: 0.033097
+
+==> ./2-1-out.390468 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 2 by 1 cyclic distribution
+Average time: 0.034558
+Maximum time: 0.034558
+
+==> ./2-2-out.390469 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 2 by 2 cyclic distribution
+Average time: 0.022320
+Maximum time: 0.022328
+
+==> ./2-4-out.390470 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 2 by 4 cyclic distribution
+Average time: 0.015057
+Maximum time: 0.015064
+
+==> ./4-8-out.390475 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 4 by 8 cyclic distribution
+Average time: 0.018580
+Maximum time: 0.018605
+
+==> ./2-8-out.390471 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 2 by 8 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390471.0" invoked on p6008 ###
+
+==> ./4-2-out.390473 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 4 by 2 cyclic distribution
+Average time: 0.013944
+Maximum time: 0.013946
+
+==> ./4-32-out.390477 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 4 by 32 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390477.0" invoked on p6065 ###
+
+==> ./2-16-out.390472 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 2 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390472.0" invoked on p6004 ###
+
+==> ./4-16-out.390476 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 4 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390476.0" invoked on p6063 ###
+
+==> ./4-4-out.390474 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 4 by 4 cyclic distribution
+Average time: 0.010625
+Maximum time: 0.010638
+
+==> ./16-2-out.390484 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 16 by 2 cyclic distribution
+Average time: 0.024390
+Maximum time: 0.024419
+
+==> ./8-16-out.390482 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 8 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390482.0" invoked on p6070 ###
+
+==> ./8-2-out.390479 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 8 by 2 cyclic distribution
+Average time: 0.011825
+Maximum time: 0.011835
+
+==> ./4-64-out.390478 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 4 by 64 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390478.0" invoked on p6004 ###
+
+==> ./8-4-out.390480 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 8 by 4 cyclic distribution
+Average time: 0.015527
+Maximum time: 0.015552
+
+==> ./8-32-out.390483 <==
+
+==> ./8-8-out.390481 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 8 by 8 cyclic distribution
+Average time: 0.037611
+Maximum time: 0.038490
+
+==> ./32-8-out.390489 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 32 by 8 cyclic distribution
+Average time: 0.280381
+Maximum time: 0.283061
+
+==> ./16-8-out.390486 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 16 by 8 cyclic distribution
+Average time: 0.092810
+Maximum time: 0.094180
+
+==> ./16-16-out.390487 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 16 by 16 cyclic distribution
+Average time: 0.214214
+Maximum time: 0.217075
+
+==> ./32-4-out.390488 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 32 by 4 cyclic distribution
+Average time: 0.127867
+Maximum time: 0.128889
+
+==> ./16-4-out.390485 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 16 by 4 cyclic distribution
+Average time: 0.041072
+Maximum time: 0.041488
+
+==> ./64-4-out.390490 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 512 rows and 512 columns
+using the 64 by 4 cyclic distribution
+Average time: 0.252669
+Maximum time: 0.253749

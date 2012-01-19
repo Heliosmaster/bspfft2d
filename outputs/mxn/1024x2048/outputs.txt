@@ -1,0 +1,329 @@
+==> ./2-2-out.390542 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 2 cyclic distribution
+Average time: 0.234820
+Maximum time: 0.234822
+
+==> ./1-2-out.390540 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 1 by 2 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390540.0" invoked on p6003 ###
+
+==> ./2-1-out.390541 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 1 cyclic distribution
+Average time: 0.392416
+Maximum time: 0.392416
+
+==> ./2-8-out.390544 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 8 cyclic distribution
+Average time: 0.073439
+Maximum time: 0.073460
+
+==> ./2-4-out.390543 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 4 cyclic distribution
+Average time: 0.140683
+Maximum time: 0.140691
+
+==> ./2-16-out.390545 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390545.0" invoked on p6065 ###
+
+==> ./4-2-out.390546 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 2 cyclic distribution
+Average time: 0.133531
+Maximum time: 0.133533
+
+==> ./4-32-out.390550 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 32 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390550.0" invoked on p6064 ###
+
+==> ./4-8-out.390548 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 8 cyclic distribution
+Average time: 0.062638
+Maximum time: 0.062662
+
+==> ./4-4-out.390547 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 4 cyclic distribution
+Average time: 0.069914
+Maximum time: 0.069923
+
+==> ./4-16-out.390549 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390549.0" invoked on p6004 ###
+
+==> ./8-2-out.390552 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 2 cyclic distribution
+Average time: 0.072064
+Maximum time: 0.072074
+
+==> ./8-16-out.390555 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390555.0" invoked on p6091 ###
+
+==> ./4-64-out.390551 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 64 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390551.0" invoked on p6003 ###
+
+==> ./8-8-out.390554 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 8 cyclic distribution
+Average time: 0.094562
+Maximum time: 0.095346
+
+==> ./8-4-out.390553 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 4 cyclic distribution
+Average time: 0.062563
+Maximum time: 0.062582
+
+==> ./8-32-out.390556 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 32 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390556.0" invoked on p6096 ###
+
+==> ./16-2-out.390557 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 2 cyclic distribution
+Average time: 0.073711
+Maximum time: 0.073725
+
+==> ./16-8-out.390559 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 8 cyclic distribution
+Average time: 0.141460
+Maximum time: 0.141893
+
+==> ./16-16-out.390560 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 16 cyclic distribution
+Average time: 0.239072
+Maximum time: 0.241374
+
+==> ./16-4-out.390558 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 4 cyclic distribution
+Average time: 0.084194
+Maximum time: 0.084793
+
+==> ./32-4-out.390561 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 32 by 4 cyclic distribution
+Average time: 0.156932
+Maximum time: 0.157769
+
+==> ./64-4-out.390563 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 64 by 4 cyclic distribution
+Average time: 0.410399
+Maximum time: 0.412986
+
+==> ./32-8-out.390562 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 32 by 8 cyclic distribution
+Average time: 0.248411
+Maximum time: 0.249414
+==> ./16-2-out.390582 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 2 cyclic distribution
+Average time: 0.074030
+Maximum time: 0.074060
+
+==> ./32-8-out.390587 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 32 by 8 cyclic distribution
+Average time: 0.247990
+Maximum time: 0.250582
+
+==> ./16-4-out.390583 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 4 cyclic distribution
+Average time: 0.086183
+Maximum time: 0.086715
+
+==> ./16-16-out.390585 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 16 cyclic distribution
+Average time: 0.261295
+Maximum time: 0.262083
+
+==> ./32-4-out.390586 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 32 by 4 cyclic distribution
+Average time: 0.153420
+Maximum time: 0.154145
+
+==> ./16-8-out.390584 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 16 by 8 cyclic distribution
+Average time: 0.144182
+Maximum time: 0.145301
+
+==> ./64-4-out.390588 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 64 by 4 cyclic distribution
+Average time: 0.405226
+Maximum time: 0.407688
+
+==> ./4-64-out.390576 <==
+
+==> ./4-8-out.390573 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 8 cyclic distribution
+Average time: 0.070137
+Maximum time: 0.070231
+
+==> ./4-32-out.390575 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 32 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390575.0" invoked on p6004 ###
+
+==> ./4-16-out.390574 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390574.0" invoked on p6069 ###
+
+==> ./4-4-out.390572 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 4 cyclic distribution
+Average time: 0.070219
+Maximum time: 0.070236
+
+==> ./8-16-out.390580 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390580.0" invoked on p6069 ###
+
+==> ./8-8-out.390579 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 8 cyclic distribution
+Average time: 0.094663
+Maximum time: 0.095575
+
+==> ./8-32-out.390581 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 32 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390581.0" invoked on p6092 ###
+
+==> ./1-2-out.390565 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 1 by 2 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390565.0" invoked on p6003 ###
+
+==> ./2-1-out.390566 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 1 cyclic distribution
+Average time: 0.392882
+Maximum time: 0.392885
+
+==> ./2-8-out.390569 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 8 cyclic distribution
+Average time: 0.073199
+Maximum time: 0.073205
+
+==> ./2-2-out.390567 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 2 cyclic distribution
+Average time: 0.235380
+Maximum time: 0.235381
+
+==> ./2-4-out.390568 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 4 cyclic distribution
+Average time: 0.138350
+Maximum time: 0.138351
+
+==> ./2-16-out.390570 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 2 by 16 cyclic distribution
+
+### Summarized output of "llq -l -x -j p6012.huygens.sara.nl.390570.0" invoked on p6068 ###
+
+==> ./4-2-out.390571 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 4 by 2 cyclic distribution
+Average time: 0.128787
+Maximum time: 0.128793
+
+==> ./8-2-out.390577 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 2 cyclic distribution
+Average time: 0.072214
+Maximum time: 0.072230
+
+==> ./8-4-out.390578 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 2048 columns
+using the 8 by 4 cyclic distribution
+Average time: 0.060393
+Maximum time: 0.060464

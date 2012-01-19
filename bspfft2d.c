@@ -317,7 +317,7 @@ void ufft(double *x, int n, int sign, double *w){
     int k1, r, c0, c, ntw, j,i;
     double ninv;
       
-    k1= k1_init(n1,N,nlc);
+    k1= k1_init(n1,N,nlc);  
    
   // 1 step: for every row, permute and compute a local, unordered fft  
     for(i=0;i<nlr;i++){
@@ -325,11 +325,9 @@ void ufft(double *x, int n, int sign, double *w){
       rev= TRUE;
       for(r=0; r<nlc/k1; r++) ufft(&a[i][2*r*k1],k1,sign,w0);
     }
+    
+
               
-//  printm(a,nlr,nlc,s,t);
- /* if(s==0 && t==0 )printf("----------\n");
-  sleep(1);*/
-             
     c0= 1;
     ntw= 0;
     for (c=k1; c<=N; c *=nlc){
@@ -337,7 +335,6 @@ void ufft(double *x, int n, int sign, double *w){
       for(i=0;i<nlr;i++) bspredistr(a[i],i,nlc,M,N,s,t,c0,c,rev,rho_p,pa,col);        
       bsp_sync();  //sync is done only after every row has been redistributed
 
-//  printm(a,nlr,nlc,s,t);
     
       rev= FALSE;
       //3 step: twiddle and perform an unordered fft on every row
@@ -418,7 +415,7 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign
   w0,w,tw,rho_np,rho_p tables needed for 1D fft
   */
   
-  double *pa,*pt,*w0, *w, *tw;
+  double *pa,*pt,*w0, *w, *tw, **trasp;
   int nlr, nlc,i,j,k1, *rho_np, *rho_p;
   
   nlr=  nloc(M,s,n0); // number of local rows 
@@ -452,18 +449,19 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign
   vecfreed(w0);
 
   //transposing the local matrix "a" and pointing to its beginning
-  double **trasp;
+
   trasp = transpose(a,nlr,nlc);
+  matfreed(a);
   pt = trasp[0];
   
   k1= k1_init(n0,M,nlr);
+
   w0= vecallocd(k1);
   w=  vecallocd(nlr);
   tw= vecallocd(2*nlr+M);
   rho_np=vecalloci(nlr);
   rho_p=vecalloci(M);
   
-//  printm(trasp,nlc,nlr,s,t);
   
   bspfft1d_init(n0,M,s,t,w0,w,tw,rho_np,rho_p);
    
@@ -471,10 +469,10 @@ double **bspfft2d(double **a, int n0, int n1, int M, int N, int s,int t,int sign
   bsp_sync();
   
   //FFT on the columns
- bspfft1d(trasp,n0,nlc,nlr,N,M,t,s,sign,w0,w,tw,rho_np,rho_p,pt,1);
+  bspfft1d(trasp,n0,nlc,nlr,N,M,t,s,sign,w0,w,tw,rho_np,rho_p,pt,1);
 
-// printm(trasp,nlc,nlr,s,t);
-//  transpose it back
+
+ // transpose it back
   a = transpose(trasp,nlc,nlr);
   matfreed(trasp);
   bsp_pop_reg(pt);

@@ -1,0 +1,92 @@
+==> ./2-1-out.390753 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 2 by 1 cyclic distribution
+Average time: 0.386310
+Maximum time: 0.386310
+
+==> ./4-2-out.390755 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 4 by 2 cyclic distribution
+Average time: 0.138940
+Maximum time: 0.138943
+
+==> ./8-2-out.390757 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 8 by 2 cyclic distribution
+Average time: 0.069898
+Maximum time: 0.069910
+
+==> ./4-4-out.390756 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 4 by 4 cyclic distribution
+Average time: 0.068770
+Maximum time: 0.068775
+
+==> ./2-2-out.390754 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 2 by 2 cyclic distribution
+Average time: 0.234376
+Maximum time: 0.234385
+
+==> ./16-4-out.390761 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 16 by 4 cyclic distribution
+Average time: 0.083930
+Maximum time: 0.084389
+
+==> ./16-2-out.390760 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 16 by 2 cyclic distribution
+Average time: 0.067814
+Maximum time: 0.067879
+
+==> ./8-4-out.390758 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 8 by 4 cyclic distribution
+Average time: 0.059659
+Maximum time: 0.059699
+
+==> ./8-8-out.390759 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 8 by 8 cyclic distribution
+Average time: 0.087100
+Maximum time: 0.087508
+
+==> ./16-16-out.390763 <==
+
+==> ./32-4-out.390764 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 32 by 4 cyclic distribution
+Average time: 0.147189
+Maximum time: 0.148174
+
+==> ./16-8-out.390762 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 16 by 8 cyclic distribution
+Average time: 0.138621
+Maximum time: 0.139466
+
+==> ./32-8-out.390765 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 32 by 8 cyclic distribution
+Average time: 0.245621
+Maximum time: 0.247795
+
+==> ./64-4-out.390766 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 64 by 4 cyclic distribution
+Average time: 0.413940
+Maximum time: 0.415717

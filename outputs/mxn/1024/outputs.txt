@@ -160,3 +160,8 @@ Average time: 0.237892
 Maximum time: 0.242715
 
 ==> ./32-8-out.390513 <==
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 1024 rows and 1024 columns
+using the 32 by 8 cyclic distribution
+Average time: 0.228929
+Maximum time: 0.231627

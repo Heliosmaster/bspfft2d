@@ -3,8 +3,8 @@
 # @ tasks_per_node = 32 
 # @ notification = never
 # @ input = /dev/null
-# @ output = ../../../outputs/mxn/1024x2048/16-16-out.$(jobid)
-# @ error = ../../../outputs/mxn/1024x2048/16-16-err.$(jobid)
+# @ output = ../../../outputs/mxn/2048x1024/16-16-out.$(jobid)
+# @ error = ../../../outputs/mxn/2048x1024/16-16-err.$(jobid)
 # @ wall_clock_limit = 0:10:00
 # @ job_type = parallel
 # @ environment = OMP_NUM_THREADS=1
@@ -16,4 +16,4 @@
 # @ queue
 
 module load bsponmpi
-./bspfft2d.sh 16 16 1024 2048
+./bspfft2d.sh 16 16 2048 1024

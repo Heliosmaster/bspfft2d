@@ -60,18 +60,16 @@ void transpose(double **a,int nlr,int nlc, int nlc_dest, double *pm){
   int p = bsp_nprocs();
   int s = bsp_pid();
   double *tmp;
-  int i,j,destproc,destrow,destindex,iglob,count=0;
+  int i,j,destproc,destrow,destindex,iglob;
   
   //allocates a temporary vector
   tmp = vecallocd(2);
-  
   
   for(i=0;i<nlr;i++)
   for(j=0;j<nlc;j++){
     
     // computes the destination processor and rows starting from the local index j
     destproc = j%p;
-    if (s == 0 && destproc != s) count++;
     destrow = j/p;
     
     // computes global index
@@ -84,11 +82,9 @@ void transpose(double **a,int nlr,int nlc, int nlc_dest, double *pm){
     tmp[0] = a[i][2*j];
     tmp[1] = a[i][2*j+1];
     
-    //printf("%d: (%d,%d) i put a%d%d=%d into %d, row %d, index %d, total index %d\n",s,nlr,nlc,i,2*j,(int)a[i][2*j],destproc,destrow,iglob,destindex);
     // performs the actual comunication
     bsp_put(destproc,tmp,pm,destindex*2*SZDBL,2*SZDBL);
   }
-  if (s == 0) printf("%d: Moving %d elements \n",s,count);
   bsp_sync();
 }
 

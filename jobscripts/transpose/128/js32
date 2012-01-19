@@ -5,7 +5,7 @@
 # @ input = /dev/null
 # @ output = ../../../outputs/transpose/128/32-out.$(jobid)
 # @ error = ../../../outputs/transpose/128/32-err.$(jobid)
-# @ wall_clock_limit = 1:00:00
+# @ wall_clock_limit = 00:10:00
 # @ job_type = parallel
 # @ environment = OMP_NUM_THREADS=1
 # @ requirements = (Memory >= 4096 )

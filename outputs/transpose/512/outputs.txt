@@ -1,0 +1,50 @@
+==> ./4-out.390841 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 512-by-512 using 4 processors
+Average time: 0.094468
+Maximum time: 0.094468
+
+
+==> ./2-out.390840 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 512-by-512 using 2 processors
+Average time: 0.178164
+Maximum time: 0.178166
+
+
+==> ./8-out.390842 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 512-by-512 using 8 processors
+Average time: 0.050251
+Maximum time: 0.050255
+
+
+==> ./16-out.390843 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 512-by-512 using 16 processors
+Average time: 0.027930
+Maximum time: 0.027937
+
+
+==> ./32-out.390844 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 512-by-512 using 32 processors
+Average time: 0.018270
+Maximum time: 0.018354
+
+
+==> ./64-out.390845 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 512-by-512 using 64 processors
+Average time: 0.026790
+Maximum time: 0.027911
+
+
+==> ./256-out.390847 <==
+
+==> ./128-out.390846 <==
+$MP_PROCS is set to 4.
+2D FFT of a matrix 512-by-512 using 128 processors
+Average time: 0.059766
+Maximum time: 0.060172
+

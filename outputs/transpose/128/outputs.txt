@@ -48,3 +48,7 @@ $MP_PROCS is set to 4.
 Average time: 0.020745
 Maximum time: 0.022033
 
+$MP_PROCS is set to 4.
+2D FFT of a matrix 128-by-128 using 128 processors
+Average time: 0.058380
+Maximum time: 0.059539

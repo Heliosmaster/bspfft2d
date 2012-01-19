@@ -90,3 +90,8 @@ $MP_PROCS is set to 4.
 using the 64 by 4 cyclic distribution
 Average time: 0.413940
 Maximum time: 0.415717
+$MP_PROCS is set to 4.
+2Dimensional FFT of a matrix with 2048 rows and 1024 columns
+using the 16 by 16 cyclic distribution
+Average time: 0.242359
+Maximum time: 0.243929

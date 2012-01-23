@@ -100,7 +100,6 @@ int main(int argc, char **argv){
       if(P>bsp_nprocs()) bsp_abort("**Sorry, not enough processors available.**\n");
       n0 = atoi(argv[2]);
       n1 = atoi(argv[3]);
-      //if(n0%2 != 0 || n1%2 != 0) bsp_abort("**Please provide powers of 2 as parameters**\n");
     }
 
   bspfft2d_transpose_test(n0,n1);

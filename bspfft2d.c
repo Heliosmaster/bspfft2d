@@ -14,7 +14,9 @@ int nloc(int p, int s, int n){
   return  (n+p-s-1)/p ;
 }
 
-
+/**
+  * prints a m-by-n matrix, highlighting the processor identity
+  */
 void printm(double **a, int m, int n,int s, int t){
   int i,j;
   for(i=0;i<m;i++){
@@ -279,15 +281,12 @@ void ufft(double *x, int n, int sign, double *w){
       * beginning of a and jump
       */
     destindex = (jglob%(c1*length))/c1;
-  //  if(s==1) destindex++;
     
       for(r=0; r<size; r++){
         tmp[2*r]=x[2*(j+r*ratio)];
         tmp[2*r+1]= x[2*(j+r*ratio)+1];
       }
       
-     //printf("(%d,%d) a%d%d dest=%d old=%d new=%d\n",s,t,i,2*j,destproc,destindex,i*length+destindex);
-  //  if(s+t!=0) printf("(%d,%d) a%d%d j2:%d j:%d j:%d c0:%d\n",s,t,i,2*j,j2,j,j0,c0);
         destindex= i*length+destindex;
     
       bsp_put(destproc,tmp,pm,destindex*2*SZDBL,size*2*SZDBL);
@@ -346,8 +345,6 @@ void ufft(double *x, int n, int sign, double *w){
       ntw++;
     }
       
-
-
     //if sign=-1 we are interested in computing the inverse fft
     
     if (sign==-1){

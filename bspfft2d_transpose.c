@@ -45,7 +45,7 @@ void bspfft_rows(double **a,int nlr,int nlc, int sign){
   vecfreei(rho);
   vecfreed(w);
   
-  // if inverse FFT 
+  // if sign=-1 we compute the inverse FFT 
   if (sign==-1){
     double ninv = 1/(double)nlc;
     for(i=0;i<nlr;i++) for(j=0;j<nlc;j++){

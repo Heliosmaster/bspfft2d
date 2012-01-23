@@ -31,7 +31,7 @@ void bspfft2d_test(n0,n1){
         }
     }
     bsp_pop_reg(&n1);
-    bsp_pop_reg(&n0); //not needed anymore 
+    bsp_pop_reg(&n0);
     bsp_pop_reg(&N);
     bsp_pop_reg(&M);
     bsp_sync();
@@ -41,14 +41,12 @@ void bspfft2d_test(n0,n1){
     s= pid%M;  /* 0 <= s < M */
     t= pid/M;  /* 0 <= t < N */
     
-   // printf("%d, s=%d,t=%d\n",pid,s,t);
 
     /* Allocate and initialize matrix */
     nlr=nloc(M,s,n0); /* number of local rows */
     nlc=nloc(N,t,n1); /* number of local columns */
     
     a= matallocd(nlr,2*nlc);
-    //bsp_push_reg(a,2*nlr*nlc*SZDBL);
     if (s==0 && t==0){
         printf("2Dimensional FFT of a matrix with %d rows and %d columns\n",n0,n1);
         printf("using the %d by %d cyclic distribution\n",M,N);
@@ -58,7 +56,7 @@ void bspfft2d_test(n0,n1){
   // old: np = n/p , now every local fft is of the length nlc
     
     /*
-    Matrix creation
+    * Matrix creation
     */
     
     for(i=0;i<nlr;i++)
@@ -96,7 +94,6 @@ void bspfft2d_test(n0,n1){
     printf("Maximum time: %f\n",tim);
   }
 
-    //bsp_sync();
   
     matfreed(a);
     vecfreed(times);
@@ -111,15 +108,11 @@ int main(int argc, char **argv){
   if (argc>0){
       M = atoi(argv[1]);
       N = atoi(argv[2]);
-    //  if(M*N>bsp_nprocs()) bsp_abort("**Sorry, not enough processors available.**\n");
+      if (M*N > bsp_nprocs()) bsp_abort("Sorry, not enough processors.\n");
       n0 = atoi(argv[3]);
       n1 = atoi(argv[4]);
-     // if(n0%2 != 0 || n1%2 != 0) bsp_abort("**Please provide powers of 2 as parameters**\n");
     }
-    else{
-      //bsp_abort("**Please provide parameters as arguments**");
-    }
-
+    
     bspfft2d_test(n0,n1);
   
   exit(0);

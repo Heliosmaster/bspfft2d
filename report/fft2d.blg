@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: fft2d.aux
+The style file: biblatex.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: fft2d-blx.bib
+Database file #2: fft2d.bib
+Biblatex version: 1.7
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+You've used 7 entries,
+            6019 wiz_defined-function locations,
+            1151 strings with 8666 characters,
+and the built_in function-call counts, 17586 in all, are:
+= -- 744
+> -- 596
+< -- 153
++ -- 195
+- -- 188
+* -- 941
+:= -- 1208
+add.period$ -- 0
+call.type$ -- 7
+change.case$ -- 86
+chr.to.int$ -- 34
+cite$ -- 12
+duplicate$ -- 1899
+empty$ -- 1889
+format.name$ -- 319
+if$ -- 4085
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 0
+newline$ -- 131
+num.names$ -- 285
+pop$ -- 1928
+preamble$ -- 1
+purify$ -- 102
+quote$ -- 0
+skip$ -- 1138
+stack$ -- 0
+substring$ -- 432
+swap$ -- 542
+text.length$ -- 134
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 254
+warning$ -- 0
+while$ -- 142
+width$ -- 0
+write$ -- 123

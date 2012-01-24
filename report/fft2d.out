@@ -1,0 +1,8 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Parallel 2-Dimensional Fast Fourier Transform}{}
+\BOOKMARK [2][-]{subsection.2.1}{MN cyclic distribution}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Row cyclic distribution}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Comparison of the efficiency}{section.2}
+\BOOKMARK [1][-]{section.3}{Numerical Experiments}{}
+\BOOKMARK [2][-]{subsection.3.1}{Remarks}{section.3}
+\BOOKMARK [1][-]{section.4}{Conclusions and further developments}{}
